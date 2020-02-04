@@ -1,0 +1,10 @@
+{
+  "homePage": {
+    "title": "主页",
+    "clicked": {
+      "times-0": "您没有按过该按钮。",
+      "times-1": "您按过该按钮{times}次",
+      "times-2": "您多次按过该按钮{times}次"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "homePage": {
+    "title": "Test app",
+    "clicked": {
+      "times-0": "You not have pushed the button",
+      "times-1": "You have pushed the button {times} time",
+      "times-2": "You have pushed the button {times} times"
+    }
+  }
+}
