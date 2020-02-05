@@ -91,7 +91,8 @@ abstract class BaseFunction {
     _context = state.context;
   }
   double getScreenHeight() {
-    return MediaQuery.of(_context).size.height - 100;
+    // kToolbarHeight, kBottomNavigationBarHeight
+    return MediaQuery.of(_context).size.height - 187;
   }
   double getScreenWidth() {
     return MediaQuery.of(_context).size.width;

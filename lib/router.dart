@@ -6,7 +6,6 @@ import 'package:flutter_app/pages/me/language_list_page.dart';
 
 class Router {
   static final Map<String, WidgetBuilder> routers = {
-    HomePage().getPageName(): (context) => HomePage(),
     LanguageListPage().getPageName(): (context) => LanguageListPage(),
   };
 
@@ -16,10 +15,6 @@ class Router {
 
   static void popPage(BuildContext context, {Object params}) {
     Navigator.pop(context, params);
-  }
-
-  static void popToHome(BuildContext context) {
-    Navigator.popUntil(context, ModalRoute.withName(HomePage().getPageName()));
   }
 
   static Object getPageParams(BuildContext context) {

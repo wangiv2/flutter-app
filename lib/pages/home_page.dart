@@ -1,63 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/base/base_page_widget.dart';
-import 'package:flutter_app/pages/me/language_list_page.dart';
-import 'package:flutter_app/router.dart';
+import 'package:flutter_app/pages/chat_page.dart';
+import 'package:flutter_app/pages/me_page.dart';
+import 'package:flutter_app/pages/menu_page.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
-class HomePage extends BasePageWidget {
+class HomePage extends StatefulWidget {
   @override
-  String getPageName() {
-    return "HomePage";
-  }
-
-  @override
-  BasePageWidgetState<BasePageWidget> getState() {
-    return _HomePageState();
-  }
-
+  State<StatefulWidget> createState() => _HomePageState();
 }
 
-class _HomePageState extends BasePageWidgetState<HomePage> {
-  int _counter = 0;
+class _HomePageState extends State<HomePage> with BaseFunction {
+  int _tabIndex = 0;
 
-  void _incrementCounter () async {
-    setState(() {
-      _counter++;
-    });
+  List<BottomNavigationBarItem> _getMenuList() {
+    return [
+      BottomNavigationBarItem(
+          icon: Icon(Icons.business),
+          title:
+              Text(FlutterI18n.translate(context, "homePage.tabTitles.menu"))),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.chat),
+          title:
+              Text(FlutterI18n.translate(context, "homePage.tabTitles.chat"))),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          title:
+              Text(FlutterI18n.translate(context, "homePage.tabTitles.me"))),
+    ];
+  }
+
+  List _pageList = [
+    new MenuPage(),
+    new ChatPage(),
+    new MePage(),
+  ];
+
+  @override
+  void initState() {
+    setContextToBaseFunction(this);
+    super.initState();
   }
 
   @override
-  Widget buildWidget(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(FlutterI18n.plural(context, "homePage.clicked.times", _counter)),
-          Text(
-            '$_counter',
-            style: Theme.of(context).textTheme.display1,
-          ),
-          MaterialButton(
-            child: Text('Increment Counter'),
-            color: Colors.white,
-            onPressed: () async {
-              _incrementCounter();
-            },
-          ),
-          MaterialButton(
-            child: Text('Go to Language List'),
-            color: Colors.white,
-            onPressed: () async {
-              Router.pushPage(context, LanguageListPage());
-            },
-          ),
-        ],
-      ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pageList[_tabIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          items: _getMenuList(),
+          currentIndex: _tabIndex,
+          fixedColor: Colors.deepPurple,
+          selectedFontSize: 15.0,
+          onTap: (index) {
+            setState(() {
+              _tabIndex = index;
+            });
+          }),
     );
-  }
-
-  @override
-  String getTitle() {
-    return FlutterI18n.translate(context, "homePage.title");
   }
 }

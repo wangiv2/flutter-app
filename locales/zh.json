@@ -1,14 +1,23 @@
 {
   "homePage": {
     "title": "主页",
-    "clicked": {
-      "times-0": "您没有按过该按钮。",
-      "times-1": "您按过该按钮{times}次",
-      "times-2": "您多次按过该按钮{times}次"
+    "tabTitles": {
+      "menu": "菜单",
+      "chat": "消息",
+      "me": "我的"
     }
+  },
+  "menuPage": {
+    "opportunity": "机会",
+    "interaction": "交互",
+    "contribution": "贡献"
   },
   "languageListPage": {
     "title": "语言",
     "auto": "跟随系统"
+  },
+  "mePage": {
+    "language": "语言",
+    "logout": "登出"
   }
 }

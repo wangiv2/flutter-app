@@ -1,14 +1,23 @@
 {
   "homePage": {
     "title": "Home Page",
-    "clicked": {
-      "times-0": "You not have pushed the button",
-      "times-1": "You have pushed the button {times} time",
-      "times-2": "You have pushed the button {times} times"
+    "tabTitles": {
+      "menu": "Menu",
+      "chat": "Chat",
+      "me": "Me"
     }
+  },
+  "menuPage": {
+    "opportunity": "Opportunity",
+    "interaction": "Interaction",
+    "contribution": "Contribution"
   },
   "languageListPage": {
     "title": "Language",
     "auto": "Auto"
+  },
+  "mePage": {
+    "language": "Language",
+    "logout": "Logout"
   }
 }
