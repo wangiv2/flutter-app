@@ -6,5 +6,9 @@
       "times-1": "您按过该按钮{times}次",
       "times-2": "您多次按过该按钮{times}次"
     }
+  },
+  "languageListPage": {
+    "title": "语言",
+    "auto": "跟随系统"
   }
 }
