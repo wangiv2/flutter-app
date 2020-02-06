@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/base/base_page_widget.dart';
+import 'package:flutter_app/base/base_function.dart';
 import 'package:flutter_app/pages/chat_page.dart';
 import 'package:flutter_app/pages/me_page.dart';
 import 'package:flutter_app/pages/menu_page.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,20 +12,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with BaseFunction {
   int _tabIndex = 0;
 
+
+
   List<BottomNavigationBarItem> _getMenuList() {
     return [
       BottomNavigationBarItem(
           icon: Icon(Icons.business),
           title:
-              Text(FlutterI18n.translate(context, "homePage.tabTitles.menu"))),
+              Text(i18nTranslate("homePage.tabTitles.menu"))),
       BottomNavigationBarItem(
           icon: Icon(Icons.chat),
           title:
-              Text(FlutterI18n.translate(context, "homePage.tabTitles.chat"))),
+              Text(i18nTranslate("homePage.tabTitles.chat"))),
       BottomNavigationBarItem(
           icon: Icon(Icons.person),
           title:
-              Text(FlutterI18n.translate(context, "homePage.tabTitles.me"))),
+              Text(i18nTranslate("homePage.tabTitles.me"))),
     ];
   }
 

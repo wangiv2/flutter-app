@@ -17,21 +17,21 @@ class MePage extends BasePageWidget {
 class _MePageState extends BasePageWidgetState<MePage> {
   @override
   String getTitle() {
-    return FlutterI18n.translate(context, "homePage.tabTitles.me");
+    return i18nTranslate("homePage.tabTitles.me");
   }
 
   @override
   Widget buildWidget(BuildContext context) {
     return ListView(
       children: <Widget>[
-        _buildListItem(FlutterI18n.translate(context, "mePage.language"), () {
+        _buildListItem(i18nTranslate("mePage.language"), () {
           Router.pushPage(context, LanguageListPage());
         }),
         Center(
           child: Column(
             children: <Widget>[
               MaterialButton(
-                child: Text(FlutterI18n.translate(context, "mePage.logout")),
+                child: Text(i18nTranslate("mePage.logout")),
                 minWidth: getScreenWidth() - 100,
                 textColor: Colors.white,
                 color: Colors.deepPurple,
@@ -40,7 +40,6 @@ class _MePageState extends BasePageWidgetState<MePage> {
             ],
           ),
         )
-
       ],
     );
   }
