@@ -24,7 +24,7 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
 
   @override
   void initState() {
-    setContextToBaseFunction(this);
+    initBaseFunction(this);
     WidgetsBinding.instance.addObserver(this);
     log("initState");
     super.initState();
@@ -42,8 +42,8 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
         child: Column(
           children: <Widget>[
             Container(
-              width: getScreenWidth(),
-              height: getScreenHeight(),
+              width: screenUtil.screenWidth,
+              height: screenUtil.screenHeight,
               color: Colors.white, // background color
               child: Stack(
                 children: <Widget>[buildWidget(context)],

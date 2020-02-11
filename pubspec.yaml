@@ -24,14 +24,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_cupertino_localizations: ^1.0.1
-
+  intl: any
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-
   # Locale
   flutter_i18n: ^0.8.3
-
   # Network relate
   dio: ^3.0.8
   dio_cookie_manager: ^1.0.0
@@ -40,13 +38,18 @@ dependencies:
   device_info: ^0.4.1+4
   battery: ^0.3.1+7
   path_provider: ^1.6.0  # A Flutter plugin for finding commonly used locations on the filesystem.
-#  multi_image_picker: ^4.6.1
+  # multi_image_picker: ^4.6.1
   connectivity: ^0.4.6+2 # Flutter plugin for discovering the state of the network (WiFi & mobile/cellular) connectivity on Android and iOS.
+  # json
+  json_annotation: ^3.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # json
+  build_runner: ^1.7.4
+  json_serializable: ^3.2.5
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

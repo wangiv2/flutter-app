@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/home_page.dart';
 import 'package:flutter_app/router.dart';
+import 'package:flutter_app/utils/share_preferences_util.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(new MyApp());
+import 'model/user_preference_entity.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  UserPreferenceEntity userPref = await SharePreferencesUtil().getUserPreference();
+  print("main userPref.language: ${userPref.language}");
+  runApp(new MyApp(userPref.language));
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  String _language = "en";
+  MyApp(String language){
+    _language = language;
+  }
 
   @override
   Widget build(BuildContext context) {
+
+//    print("userPref.language: ${userPref.language}");
+//    FlutterI18n.refresh(context, new Locale(userPref.language));
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -30,7 +45,7 @@ class MyApp extends StatelessWidget {
             useCountryCode: false,
             fallbackFile: 'en',
             path: 'locales',
-            forcedLocale: new Locale('en')),
+            forcedLocale: new Locale(_language)),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],

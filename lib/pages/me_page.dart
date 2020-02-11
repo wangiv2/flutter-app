@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/base/base_page_widget.dart';
 import 'package:flutter_app/pages/me/language_list_page.dart';
 import 'package:flutter_app/router.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 
 class MePage extends BasePageWidget {
   @override
@@ -32,7 +31,7 @@ class _MePageState extends BasePageWidgetState<MePage> {
             children: <Widget>[
               MaterialButton(
                 child: Text(i18nTranslate("mePage.logout")),
-                minWidth: getScreenWidth() - 100,
+                minWidth: screenUtil.screenWidth - 100,
                 textColor: Colors.white,
                 color: Colors.deepPurple,
                 onPressed: () {},

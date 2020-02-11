@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/base/base_page_widget.dart';
+import 'package:flutter_app/model/user_preference_entity.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 class LanguageListPage extends BasePageWidget {
@@ -40,7 +41,7 @@ class _LanguageListPageState extends BasePageWidgetState<LanguageListPage> {
         style: TextStyle(color: currentLocale == value ? color : null),
       ),
       trailing: currentLocale == value ? Icon(Icons.done, color: color) : null,
-      onTap: () {
+      onTap: () async {
         Locale locale;
         if (value != null) {
           locale = new Locale(value);
@@ -49,6 +50,14 @@ class _LanguageListPageState extends BasePageWidgetState<LanguageListPage> {
         }
         FlutterI18n.refresh(context, locale);
         setState(() {});
+        UserPreferenceEntity userPref = await sharePreferencesUtil.getUserPreference();
+        if (userPref == null) {
+          userPref = new UserPreferenceEntity();
+        }
+        log("userPref.language: ${userPref.language}");
+        userPref.language = value;
+        sharePreferencesUtil.setUserPreference(userPref);
+        log("userPref.language2: ${userPref.language}");
       },
     );
   }

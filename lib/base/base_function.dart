@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/screen_util.dart';
+import 'package:flutter_app/utils/share_preferences_util.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'base_page_widget.dart';
 
 abstract class BaseFunction {
   BuildContext _context;
-  void setContextToBaseFunction(State state) {
+  ScreenUtil _screenUtil;
+  SharePreferencesUtil _sharePreferencesUtil;
+  void initBaseFunction(State state) {
     _context = state.context;
+    _screenUtil = new ScreenUtil(_context);
+    _sharePreferencesUtil = new SharePreferencesUtil();
   }
-  double getScreenHeight() {
-    // kToolbarHeight, kBottomNavigationBarHeight
-    return MediaQuery.of(_context).size.height - 187;
-  }
-  double getScreenWidth() {
-    return MediaQuery.of(_context).size.width;
-  }
-  double getStatusBarHeight() {
-    return MediaQuery.of(_context).padding.top;
-  }
+
+  ScreenUtil get screenUtil => _screenUtil;
+  SharePreferencesUtil get sharePreferencesUtil => _sharePreferencesUtil;
+
   void log(Object object) {
     BasePageWidget basePageWidget = _context.widget;
     print("[$basePageWidget] - $object");

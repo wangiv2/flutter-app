@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/base/base_function.dart';
+import 'package:flutter_app/model/user_preference_entity.dart';
 import 'package:flutter_app/pages/chat_page.dart';
 import 'package:flutter_app/pages/me_page.dart';
 import 'package:flutter_app/pages/menu_page.dart';
+import 'package:flutter_i18n/flutter_i18n.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,8 +41,15 @@ class _HomePageState extends State<HomePage> with BaseFunction {
 
   @override
   void initState() {
-    setContextToBaseFunction(this);
+    initBaseFunction(this);
+    _printUserPref();
     super.initState();
+  }
+
+  void _printUserPref() async {
+    UserPreferenceEntity userPref = await sharePreferencesUtil.getUserPreference();
+    print("userPref.language: ${userPref.language}");
+    FlutterI18n.refresh(context, new Locale(userPref.language));
   }
 
   @override
