@@ -1,16 +1,33 @@
-# flutter_app
+# Flutter Framework
 
-A new Flutter project.
+This is the Flutter Framework. This is the most basic framework required for a project, 
+including login logic, version upgrade, multilingual and other basic functions. 
+You can quickly develop the project according to this project  
 
-## Getting Started
+## Directory Structure
 
-This project is a starting point for a Flutter application.
+```
+├── android
+├── ios
+├── assets                  
+│   ├── fonts               font files
+│   ├── images              image files
+│   ├── locales             locale files 
+├── lib
+│   ├── api                 backend server interface
+│   ├── base                base page widget
+│   ├── config              app config
+│   ├── generated           Flutter bean factory generated files
+│   ├── model               entity
+│   ├── pages               the logic page
+│   ├── provider            app level state
+│   ├── res                 the values, like colors, constants...
+│   ├── routers             page router management
+│   ├── samples             smaple page for quickly start
+│   ├── utils               utils, include http, log...
+│   ├── widgets             common widgets, include login page, version page...
+│   ├── main.dart           entrance file
+├── pubspec.lock
+├── pubspec.yaml            配置文件
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```

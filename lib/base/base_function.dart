@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/screen_util.dart';
-import 'package:flutter_app/utils/share_preferences_util.dart';
+import 'package:flutter_app/utils/screen/index.dart';
+import 'package:flutter_app/utils/share_preferences/index.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 import 'base_page_widget.dart';

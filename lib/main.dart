@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/home_page.dart';
-import 'package:flutter_app/router.dart';
-import 'package:flutter_app/utils/share_preferences_util.dart';
+import 'package:flutter_app/pages/home/home_page.dart';
+import 'package:flutter_app/routers/router.dart';
+import 'package:flutter_app/utils/share_preferences/index.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         FlutterI18nDelegate(
             useCountryCode: false,
             fallbackFile: 'en',
-            path: 'locales',
+            path: 'assets/locales',
             forcedLocale: new Locale(_language)),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

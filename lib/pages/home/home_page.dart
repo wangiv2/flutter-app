@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/base/base_function.dart';
 import 'package:flutter_app/model/user_preference_entity.dart';
-import 'package:flutter_app/pages/chat_page.dart';
-import 'package:flutter_app/pages/me_page.dart';
-import 'package:flutter_app/pages/menu_page.dart';
+import 'package:flutter_app/pages/chat/chat_page.dart';
+import 'package:flutter_app/pages/me/me_page.dart';
+import 'package:flutter_app/pages/menu/menu_page.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 class HomePage extends StatefulWidget {

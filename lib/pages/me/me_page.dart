@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/base/base_page_widget.dart';
-import 'package:flutter_app/pages/me/language_list_page.dart';
-import 'package:flutter_app/router.dart';
+import 'package:flutter_app/widgets/language_list_page/language_list_page.dart';
+import 'package:flutter_app/routers/router.dart';
 
 class MePage extends BasePageWidget {
   @override
