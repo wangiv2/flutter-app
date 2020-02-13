@@ -28,6 +28,6 @@ You can quickly develop the project according to this project
 │   ├── widgets             common widgets, include login page, version page...
 │   ├── main.dart           entrance file
 ├── pubspec.lock
-├── pubspec.yaml            配置文件
+├── pubspec.yaml            pub spec file
 
 ```
