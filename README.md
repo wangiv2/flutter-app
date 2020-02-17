@@ -10,24 +10,24 @@ You can quickly develop the project according to this project
 ├── android
 ├── ios
 ├── assets                  
-│   ├── fonts               font files
-│   ├── images              image files
-│   ├── locales             locale files 
+│   ├── fonts                   font files
+│   ├── images                  image files
+│   ├── locales                 locale files 
 ├── lib
-│   ├── api                 backend server interface
-│   ├── base                base page widget
-│   ├── config              app config
-│   ├── generated           Flutter bean factory generated files
-│   ├── model               entity
-│   ├── pages               the logic page
-│   ├── provider            app level state
-│   ├── res                 the values, like colors, constants...
-│   ├── routers             page router management
-│   ├── samples             smaple page for quickly start
-│   ├── utils               utils, include http, log...
-│   ├── widgets             common widgets, include login page, version page...
-│   ├── main.dart           entrance file
+│   ├── api                     backend server interface
+│   ├── config                  app config
+│   ├── generated               Flutter bean factory generated files
+│   ├── model                   entity
+│   ├── pages                   the logic page
+│   ├── provider                app level state
+│   ├── res                     the values, like colors, constants...
+│   ├── routers                 page router management
+│   ├── samples                 smaple page for quickly start
+│   ├── utils                   utils, include http, log...
+│   ├── widgets                 base page widget, common widgets, include login page, version page...
+│   │   ├── base_page_widget    
+│   ├── main.dart               entrance file
 ├── pubspec.lock
-├── pubspec.yaml            pub spec file
+├── pubspec.yaml                pub spec file
 
 ```
