@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/base/base_page_widget.dart';
+import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/model/user_preference_entity.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 
 class LanguageListPage extends BasePageWidget {
   @override
@@ -18,7 +17,7 @@ class LanguageListPage extends BasePageWidget {
 class _LanguageListPageState extends BasePageWidgetState<LanguageListPage> {
   @override
   String getTitle() {
-    return FlutterI18n.translate(context, "languageListPage.title");
+    return flutterI18nUtil.translate("languageListPage.title");
   }
 
   @override
@@ -27,14 +26,14 @@ class _LanguageListPageState extends BasePageWidgetState<LanguageListPage> {
       children: <Widget>[
         _buildLanguageItem("中文简体", "zh"),
         _buildLanguageItem("English", "en"),
-        _buildLanguageItem(FlutterI18n.translate(context, "languageListPage.auto"), null),
+        _buildLanguageItem(flutterI18nUtil.translate("languageListPage.auto"), null),
       ],
     );
   }
 
   Widget _buildLanguageItem(String lan, value) {
     Color color = Theme.of(context).primaryColor;
-    String currentLocale = FlutterI18n.currentLocale(context).languageCode;
+    String currentLocale = flutterI18nUtil.currentLocale.languageCode;
     return ListTile(
       title: Text(
         lan,
@@ -48,16 +47,15 @@ class _LanguageListPageState extends BasePageWidgetState<LanguageListPage> {
         } else {
           locale = Localizations.localeOf(context);
         }
-        FlutterI18n.refresh(context, locale);
-        setState(() {});
+        flutterI18nUtil.refresh(locale: locale);
+        setState(() {}); // need to setState after refresh the language
         UserPreferenceEntity userPref = await sharePreferencesUtil.getUserPreference();
         if (userPref == null) {
           userPref = new UserPreferenceEntity();
         }
-        log("userPref.language: ${userPref.language}");
+        log("set language to ${userPref.language}");
         userPref.language = value;
         sharePreferencesUtil.setUserPreference(userPref);
-        log("userPref.language2: ${userPref.language}");
       },
     );
   }

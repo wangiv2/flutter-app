@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/base/base_page_widget.dart';
+import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 
 class MenuPage extends BasePageWidget {
   @override
@@ -13,7 +13,7 @@ class _MenuPageState extends BasePageWidgetState<MenuPage> {
 
   @override
   String getTitle() {
-    return i18nTranslate("homePage.tabTitles.menu");
+    return flutterI18nUtil.translate("homePage.tabTitles.menu");
   }
 
   @override
@@ -22,9 +22,9 @@ class _MenuPageState extends BasePageWidgetState<MenuPage> {
       child: ListView(
         padding: const EdgeInsets.only(left: 5.0, top: 20.0),
         children: <Widget>[
-          _buildListItem(i18nTranslate("menuPage.opportunity"), Icons.lightbulb_outline, () {}),
-          _buildListItem(i18nTranslate("menuPage.interaction"), Icons.chat, () {}),
-          _buildListItem(i18nTranslate("menuPage.contribution"), Icons.access_alarm, () {}),
+          _buildListItem(flutterI18nUtil.translate("menuPage.opportunity"), Icons.lightbulb_outline, () {}),
+          _buildListItem(flutterI18nUtil.translate("menuPage.interaction"), Icons.chat, () {}),
+          _buildListItem(flutterI18nUtil.translate("menuPage.contribution"), Icons.access_alarm, () {}),
         ],
       ),
     );

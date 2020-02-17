@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_app/base/base_page_widget.dart';
+import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 
 class LoginPage extends BasePageWidget {
   @override
