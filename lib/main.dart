@@ -15,21 +15,17 @@ void main() async {
     _lang = userPref.language;
   }
   print("main userPref.language: $_lang");
-  runApp(new MyApp(_lang));
+  runApp(new MyApp(language: _lang,));
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  String _language;
-  MyApp(String language){
-    _language = language;
-  }
+  MyApp({Key key, @required this.language}) : super(key: key);
+
+  final String language;
 
   @override
   Widget build(BuildContext context) {
-
-//    print("userPref.language: ${userPref.language}");
-//    FlutterI18n.refresh(context, new Locale(userPref.language));
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -45,7 +41,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       localizationsDelegates: [
-        FlutterI18nUtil.delegate(_language),
+        FlutterI18nUtil.delegate(this.language),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
