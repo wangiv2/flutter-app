@@ -2,17 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/chat/chat_page.dart';
 import 'package:flutter_app/pages/me/me_page.dart';
 import 'package:flutter_app/pages/menu/menu_page.dart';
-import 'package:flutter_app/utils/index.dart';
+import 'package:flutter_app/widgets/base_page_widget/tabBar_page_widget.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends TabBarPageWidget {
   @override
-  State<StatefulWidget> createState() => _HomePageState();
+  String getPageName() => "HomePage";
+
+  @override
+  TabBarPageWidgetState<TabBarPageWidget> getState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with BaseFunction {
-  int _tabIndex = 0;
+class _HomePageState extends TabBarPageWidgetState<HomePage> {
 
-  List<BottomNavigationBarItem> _getMenuList() {
+  @override
+  void onCreate() {
+    super.onCreate();
+    fixedColor = Colors.deepPurple;
+  }
+
+  @override
+  List<BottomNavigationBarItem> getMenuList() {
     return [
       BottomNavigationBarItem(
           icon: Icon(Icons.business),
@@ -29,32 +38,13 @@ class _HomePageState extends State<HomePage> with BaseFunction {
     ];
   }
 
-  List _pageList = [
-    new MenuPage(),
-    new ChatPage(),
-    new MePage(),
-  ];
-
   @override
-  void initState() {
-    initBaseFunction(this);
-    super.initState();
+  List getPageList() {
+    return [
+      new MenuPage(),
+      new ChatPage(),
+      new MePage(),
+    ];
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pageList[_tabIndex],
-      bottomNavigationBar: BottomNavigationBar(
-          items: _getMenuList(),
-          currentIndex: _tabIndex,
-          fixedColor: Colors.deepPurple,
-          selectedFontSize: 15.0,
-          onTap: (index) {
-            setState(() {
-              _tabIndex = index;
-            });
-          }),
-    );
-  }
 }

@@ -20,3 +20,45 @@ class Router {
     return ModalRoute.of(context).settings.arguments;
   }
 }
+
+class RouterManager {
+  List<String> _activityStack = new List<String>();
+
+  RouterManager._internal();
+
+  static RouterManager _singleton = new RouterManager._internal();
+
+  //工厂模式
+  factory RouterManager() => _singleton;
+  void addWidget(BasePageWidget page) {
+    _activityStack.add(page.getPageName());
+  }
+
+  void removeWidget(BasePageWidget page) {
+    _activityStack.remove(page.getPageName());
+  }
+
+  bool isTopPage(BasePageWidget page) {
+    if (_activityStack == null) {
+      return false;
+    }
+    try {
+      return page.getPageName() ==
+          _activityStack[_activityStack.length - 1];
+    } catch (exception) {
+      return false;
+    }
+  }
+
+  bool isSecondTop(BasePageWidget page) {
+    if (_activityStack == null) {
+      return false;
+    }
+    try {
+      return page.getPageName() ==
+          _activityStack[_activityStack.length - 2];
+    } catch (exception) {
+      return false;
+    }
+  }
+}

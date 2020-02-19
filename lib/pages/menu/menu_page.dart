@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
+import 'package:flutter_app/widgets/base_page_widget/navigator_page_widget.dart';
 
-class MenuPage extends BasePageWidget {
+class MenuPage extends NavigatorPageWidget {
   @override
   String getPageName() => "MenuPage";
 
@@ -9,7 +10,7 @@ class MenuPage extends BasePageWidget {
   BasePageWidgetState<BasePageWidget> getState() => _MenuPageState();
 }
 
-class _MenuPageState extends BasePageWidgetState<MenuPage> {
+class _MenuPageState extends NavigatorPageWidgetState<MenuPage> {
 
   @override
   String getTitle() {
@@ -17,7 +18,7 @@ class _MenuPageState extends BasePageWidgetState<MenuPage> {
   }
 
   @override
-  Widget buildWidget(BuildContext context) {
+  Widget buildContentWidget(BuildContext context) {
     return Container(
       child: ListView(
         padding: const EdgeInsets.only(left: 5.0, top: 20.0),

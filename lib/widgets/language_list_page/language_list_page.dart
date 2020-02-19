@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/model/user_preference_entity.dart';
+import 'package:flutter_app/widgets/base_page_widget/navigator_page_widget.dart';
 
-class LanguageListPage extends BasePageWidget {
+class LanguageListPage extends NavigatorPageWidget {
   @override
   String getPageName() {
     return "LanguageListPage";
   }
 
   @override
-  BasePageWidgetState<BasePageWidget> getState() {
+  NavigatorPageWidgetState<NavigatorPageWidget> getState() {
     return _LanguageListPageState();
   }
 }
 
-class _LanguageListPageState extends BasePageWidgetState<LanguageListPage> {
+class _LanguageListPageState extends NavigatorPageWidgetState<LanguageListPage> {
   @override
   String getTitle() {
     return flutterI18nUtil.translate("languageListPage.title");
   }
 
   @override
-  Widget buildWidget(BuildContext context) {
+  Widget buildContentWidget(BuildContext context) {
     return ListView(
       children: <Widget>[
         _buildLanguageItem("中文简体", "zh"),

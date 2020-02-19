@@ -1,26 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
+import 'package:flutter_app/widgets/base_page_widget/navigator_page_widget.dart';
 import 'package:flutter_app/widgets/language_list_page/language_list_page.dart';
 import 'package:flutter_app/routers/router.dart';
 
-class MePage extends BasePageWidget {
+class MePage extends NavigatorPageWidget {
   @override
   String getPageName() => "MePage";
 
   @override
-  BasePageWidgetState<BasePageWidget> getState() => _MePageState();
+  NavigatorPageWidgetState<NavigatorPageWidget> getState() => _MePageState();
 
 }
 
-class _MePageState extends BasePageWidgetState<MePage> {
+class _MePageState extends NavigatorPageWidgetState<MePage> {
   @override
   String getTitle() {
     return flutterI18nUtil.translate("homePage.tabTitles.me");
   }
 
   @override
-  Widget buildWidget(BuildContext context) {
+  Widget buildContentWidget(BuildContext context) {
     return ListView(
       children: <Widget>[
         _buildListItem(flutterI18nUtil.translate("mePage.language"), () {
