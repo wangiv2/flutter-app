@@ -13,9 +13,7 @@ Can be overridden to implement the action.
 
 > onCreate, onResume, onPause, onBackground, onForeground, onDestroy
 
-#### Scenarios：
-
-|  Case   | Trigger Flow  |
+|  Scenario   | Trigger Flow  |
 |  ----  | ----  |
 | Page A create  | onCreate(A) -> onResume(A) |
 | Page A go to Page B  | onCreate(B) -> onResume(B) -> onPause(A) |
