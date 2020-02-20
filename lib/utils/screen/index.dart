@@ -11,8 +11,9 @@ class ScreenUtil {
   double get screenHeight {
     if (_screenHeight == null) {
       // kToolbarHeight, kBottomNavigationBarHeight
-      _screenHeight = MediaQuery.of(_context).size.height - 187;
+      _screenHeight = MediaQuery.of(_context).size.height;
     }
+    print("screenHeight: $_screenHeight");
     return _screenHeight;
   }
 
@@ -27,6 +28,18 @@ class ScreenUtil {
     if (_statusBarHeight == null) {
       _statusBarHeight = MediaQuery.of(_context).padding.top;
     }
+    print("statusBarHeight: $_statusBarHeight");
     return _statusBarHeight;
+  }
+
+  double get navigationBarHeight {
+    print("navigationBarHeight: $kToolbarHeight");
+    return kToolbarHeight;
+  }
+
+  double get bottomTabBarHeight {
+    print("bottomTabBarHeight: $kBottomNavigationBarHeight");
+    // 56.0
+    return kBottomNavigationBarHeight;
   }
 }

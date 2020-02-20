@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
-import 'package:flutter_app/widgets/base_page_widget/navigator_page_widget.dart';
+import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 import 'package:flutter_app/widgets/language_list_page/language_list_page.dart';
 import 'package:flutter_app/routers/router.dart';
 

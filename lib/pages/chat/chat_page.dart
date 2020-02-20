@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
-import 'package:flutter_app/widgets/base_page_widget/navigator_page_widget.dart';
+import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 
 class ChatPage extends NavigatorPageWidget {

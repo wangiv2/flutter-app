@@ -21,10 +21,14 @@ abstract class TabBarPageWidgetState<T extends TabBarPageWidget> extends BasePag
             setState(() {
               _tabIndex = index;
             });
+            onTabChanged(_tabIndex);
           }),
     );
   }
 
+  void onTabChanged(int _index) {}
+
   List getPageList();
   List<BottomNavigationBarItem> getMenuList();
+
 }

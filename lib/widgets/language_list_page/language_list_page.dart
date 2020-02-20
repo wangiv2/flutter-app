@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/model/user_preference_entity.dart';
-import 'package:flutter_app/widgets/base_page_widget/navigator_page_widget.dart';
+import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 
 class LanguageListPage extends NavigatorPageWidget {
   @override

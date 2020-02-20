@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 
 class LoginPage extends BasePageWidget {
@@ -21,12 +20,6 @@ class _LoginPageState extends BasePageWidgetState<LoginPage> {
   Widget buildWidget(BuildContext context) {
     // TODO: implement buildWidget
     return Container();
-  }
-
-  @override
-  String getTitle() {
-    // TODO: implement getTitle
-    return null;
   }
 
 }

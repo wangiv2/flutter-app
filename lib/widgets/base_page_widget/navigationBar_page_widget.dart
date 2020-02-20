@@ -11,20 +11,19 @@ abstract class NavigatorPageWidgetState<T extends NavigatorPageWidget> extends B
       appBar: AppBar(
         title: new Text(getTitle()),
       ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              width: screenUtil.screenWidth,
-              height: screenUtil.screenHeight,
-              color: Colors.white, // background color
+      body: Flex(
+        direction: Axis.vertical,
+        children: <Widget>[
+          Expanded(
+            child: Container(
+//              color: Colors.white,
               child: Stack(
                 children: <Widget>[buildContentWidget(context)],
               ),
             ),
-          ],
-        ),
-      ),
+          ),
+        ],
+      )
     );
   }
 

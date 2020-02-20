@@ -46,5 +46,4 @@ class _HomePageState extends TabBarPageWidgetState<HomePage> {
       new MePage(),
     ];
   }
-
 }
