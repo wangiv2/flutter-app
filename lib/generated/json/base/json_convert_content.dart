@@ -7,6 +7,8 @@ import 'package:flutter_app/model/user_entity.dart';
 import 'package:flutter_app/generated/json/user_entity_helper.dart';
 import 'package:flutter_app/model/user_preference_entity.dart';
 import 'package:flutter_app/generated/json/user_preference_entity_helper.dart';
+import 'package:flutter_app/model/oauth_entity_entity.dart';
+import 'package:flutter_app/generated/json/oauth_entity_entity_helper.dart';
 
 class JsonConvert<T> {
 	T fromJson(Map<String, dynamic> json) {
@@ -16,16 +18,19 @@ class JsonConvert<T> {
   }  static _getFromJson<T>(Type type, data, json) {
     switch (type) {			case UserEntity:
 			return userEntityFromJson(data as UserEntity, json) as T;			case UserPreferenceEntity:
-			return userPreferenceEntityFromJson(data as UserPreferenceEntity, json) as T;    }
+			return userPreferenceEntityFromJson(data as UserPreferenceEntity, json) as T;			case OAuthEntityEntity:
+			return oAuthEntityEntityFromJson(data as OAuthEntityEntity, json) as T;    }
     return data as T;
   }  static _getToJson<T>(Type type, data) {
 		switch (type) {			case UserEntity:
 			return userEntityToJson(data as UserEntity);			case UserPreferenceEntity:
-			return userPreferenceEntityToJson(data as UserPreferenceEntity);    }
+			return userPreferenceEntityToJson(data as UserPreferenceEntity);			case OAuthEntityEntity:
+			return oAuthEntityEntityToJson(data as OAuthEntityEntity);    }
     return data as T;
   }  static T fromJsonAsT<T>(json) {
     switch (T.toString()) {			case 'UserEntity':
 			return UserEntity().fromJson(json) as T;			case 'UserPreferenceEntity':
-			return UserPreferenceEntity().fromJson(json) as T;    }
+			return UserPreferenceEntity().fromJson(json) as T;			case 'OAuthEntityEntity':
+			return OAuthEntityEntity().fromJson(json) as T;    }
     return null;
   }}

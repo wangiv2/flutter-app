@@ -1,25 +1,140 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
+import 'package:flutter/material.dart';
 
-class LoginPage extends BasePageWidget {
+class LoginPage extends StatelessWidget {
   @override
-  String getPageName() {
-    return "LoginPage";
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(100.0),
+              child: Center(
+                child: Image.asset('assets/images/oocl.png', width: 200, height: 100),
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 40.0),
+                child: Text(
+                  "ACCOUNT",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.redAccent,
+                    fontSize: 15.0,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 6.0),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                      color: Colors.redAccent,
+                      width: 0.5,
+                      style: BorderStyle.solid),
+                ),
+              ),
+              child: TextField(
+                textAlign: TextAlign.left,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    onPressed: () => {},
+                    icon: Icon(Icons.clear),
+                  ),
+                  border: InputBorder.none,
+                  hintText: 'cody.chen@oocl.com',
+                  hintStyle: TextStyle(color: Colors.grey.withOpacity(0.7)),
+                ),
+              ),
+            ),
+            Divider(
+              height: 24.0,
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 40.0),
+                child: Text(
+                  "PASSWORD",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.redAccent,
+                    fontSize: 15.0,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 6.0),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                      color: Colors.redAccent,
+                      width: 0.5,
+                      style: BorderStyle.solid),
+                ),
+              ),
+              child: TextField(
+                obscureText: true,
+                textAlign: TextAlign.left,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    onPressed: () => {},
+                    icon: Icon(Icons.clear),
+                  ),
+                  border: InputBorder.none,
+                  hintText: '******',
+                  hintStyle: TextStyle(color: Colors.grey.withOpacity(0.7)),
+                ),
+              ),
+            ),
+            Divider(
+              height: 24.0,
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0, bottom: 50),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      color: Colors.redAccent,
+                      onPressed: () => {},
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20.0,
+                          horizontal: 20.0,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                "LOGIN",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1.4),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
-
-  @override
-  BasePageWidgetState<BasePageWidget> getState() {
-    return _LoginPageState();
-  }
-
-
-}
-
-class _LoginPageState extends BasePageWidgetState<LoginPage> {
-  @override
-  Widget buildWidget(BuildContext context) {
-    // TODO: implement buildWidget
-    return Container();
-  }
-
 }
