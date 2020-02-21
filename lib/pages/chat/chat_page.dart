@@ -18,6 +18,17 @@ class _ChatPageState extends NavigatorPageWidgetState<ChatPage> {
   }
 
   @override
+  void onCreate() async {
+    super.onCreate();
+    showLoadingWidget();
+    await Future.delayed(Duration(seconds: 2)).then((_){
+      log("delayed done");
+      hideLoadingWidget();
+      showNoDataWidget();
+    });
+  }
+
+  @override
   Widget buildContentWidget(BuildContext context) {
     return Center(
       child: Column(

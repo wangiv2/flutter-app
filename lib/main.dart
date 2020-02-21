@@ -3,6 +3,7 @@ import 'package:flutter_app/pages/home/home_page.dart';
 import 'package:flutter_app/routers/router.dart';
 import 'package:flutter_app/utils/flutterI18n/index.dart';
 import 'package:flutter_app/utils/share_preferences/index.dart';
+import 'package:flutter_app/widgets/splash_page/index.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'model/user_preference_entity.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
         Locale('en', 'US'), // 美国英语
         Locale('zh', 'CN'), // 中文简体
       ],
-      home: HomePage(),
+      home: SplashPage(),//HomePage(),
       routes: Router.routers,
     );
   }
