@@ -3,6 +3,7 @@ import 'package:flutter_app/pages/home/home_page.dart';
 import 'package:flutter_app/routers/router.dart';
 import 'package:flutter_app/utils/flutterI18n/index.dart';
 import 'package:flutter_app/utils/share_preferences/index.dart';
+import 'package:flutter_app/widgets/login_page/common_login.dart';
 import 'package:flutter_app/widgets/splash_page/index.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -10,39 +11,30 @@ import 'model/user_preference_entity.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  UserPreferenceEntity userPref = await SharePreferencesUtil().getUserPreference();
-  String _lang;
-  if (userPref != null) {
-    _lang = userPref.language;
-  }
-  print("main userPref.language: $_lang");
-  runApp(new MyApp(language: _lang,));
+  UserPreferenceEntity _userPref = await SharePreferencesUtil().getUserPreference();
+  runApp(new MyApp(userPref: _userPref));
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  MyApp({Key key, @required this.language}) : super(key: key);
+  MyApp({Key key, @required this.userPref}) : super(key: key);
 
-  final String language;
+  final UserPreferenceEntity userPref;
 
   @override
   Widget build(BuildContext context) {
+    String _lang = userPref?.language;
+    bool _isFirstLaunch = userPref?.isFirstLaunch == null;
+    bool _isLogin = userPref?.isLogin != null;
+    print("userPref: language[$_lang] isFirstLaunch[$_isFirstLaunch] isLogin[$_isLogin]");
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.deepPurple,
       ),
       localizationsDelegates: [
-        FlutterI18nUtil.delegate(this.language),
+        FlutterI18nUtil.delegate(_lang),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
@@ -50,8 +42,26 @@ class MyApp extends StatelessWidget {
         Locale('en', 'US'), // 美国英语
         Locale('zh', 'CN'), // 中文简体
       ],
-      home: SplashPage(),//HomePage(),
+      home: _getHomePage(_isFirstLaunch, _isLogin),
       routes: Router.routers,
     );
+  }
+
+  dynamic _getHomePage(bool _isFirstLaunch, bool _isLogin) {
+    SplashPage _splashPage = SplashPage(
+      imageList: [
+        'assets/images/splash_1.png',
+        'assets/images/splash_2.png',
+        'assets/images/splash_3.png',
+      ],
+      redirectPage: _isLogin ? HomePage() : LoginPage(),
+    );
+    if (_isFirstLaunch) {
+      return _splashPage;
+    } else if (_isLogin) {
+      return HomePage();
+    } else {
+      return LoginPage();
+    }
   }
 }
