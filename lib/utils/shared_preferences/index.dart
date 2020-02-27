@@ -4,7 +4,7 @@ import 'package:flutter_app/generated/json/user_preference_entity_helper.dart';
 import 'package:flutter_app/model/user_preference_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharePreferencesUtil {
+class SharedPreferencesUtil {
 
   getUserPreference() async {
     SharedPreferences sp = await SharedPreferences.getInstance();

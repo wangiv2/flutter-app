@@ -4,16 +4,16 @@ import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.d
 import 'package:flutter_app/widgets/language_list_page/language_list_page.dart';
 import 'package:flutter_app/routers/router.dart';
 
-class MePage extends NavigatorPageWidget {
+class MePage extends NavigationBarPageWidget {
   @override
   String getPageName() => "MePage";
 
   @override
-  NavigatorPageWidgetState<NavigatorPageWidget> getState() => _MePageState();
+  NavigationBarPageWidgetState<NavigationBarPageWidget> getState() => _MePageState();
 
 }
 
-class _MePageState extends NavigatorPageWidgetState<MePage> {
+class _MePageState extends NavigationBarPageWidgetState<MePage> {
   @override
   String getTitle() {
     return flutterI18nUtil.translate("homePage.tabTitles.me");

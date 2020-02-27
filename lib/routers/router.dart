@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/pages/home/home_page.dart';
+import 'package:flutter_app/pages/menu/opportunity_page.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/language_list_page/language_list_page.dart';
 
 class Router {
   static final Map<String, WidgetBuilder> routers = {
     HomePage().getPageName(): (context) => HomePage(),
+    OpportunityPage().getPageName(): (context) => OpportunityPage(),
     LanguageListPage().getPageName(): (context) => LanguageListPage(),
   };
 

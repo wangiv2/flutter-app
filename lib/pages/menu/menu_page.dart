@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/menu/opportunity_page.dart';
+import 'package:flutter_app/routers/router.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 
-class MenuPage extends NavigatorPageWidget {
+class MenuPage extends NavigationBarPageWidget {
   @override
   String getPageName() => "MenuPage";
 
@@ -10,12 +12,10 @@ class MenuPage extends NavigatorPageWidget {
   BasePageWidgetState<BasePageWidget> getState() => _MenuPageState();
 }
 
-class _MenuPageState extends NavigatorPageWidgetState<MenuPage> {
+class _MenuPageState extends NavigationBarPageWidgetState<MenuPage> {
 
   @override
-  String getTitle() {
-    return flutterI18nUtil.translate("homePage.tabTitles.menu");
-  }
+  String getTitle() => flutterI18nUtil.translate("homePage.tabTitles.menu");
 
   @override
   Widget buildContentWidget(BuildContext context) {
@@ -23,7 +23,9 @@ class _MenuPageState extends NavigatorPageWidgetState<MenuPage> {
       child: ListView(
         padding: const EdgeInsets.only(left: 5.0, top: 20.0),
         children: <Widget>[
-          _buildListItem(flutterI18nUtil.translate("menuPage.opportunity"), Icons.lightbulb_outline, () {}),
+          _buildListItem(flutterI18nUtil.translate("menuPage.opportunity"), Icons.lightbulb_outline, () {
+            Router.pushPage(context, OpportunityPage());
+          }),
           _buildListItem(flutterI18nUtil.translate("menuPage.interaction"), Icons.chat, () {}),
           _buildListItem(flutterI18nUtil.translate("menuPage.contribution"), Icons.access_alarm, () {}),
         ],

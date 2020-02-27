@@ -6,7 +6,7 @@ Provide splash page widget to easy use in application.
     SplashPage(List<String> imageList, dynamic redirectPage);
 ```
 
-### Demo
+### Sample
 ```dart
   class MyApp extends StatelessWidget {
     @override

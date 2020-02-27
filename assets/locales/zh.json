@@ -14,7 +14,8 @@
   },
   "languageListPage": {
     "title": "语言",
-    "auto": "跟随系统"
+    "auto": "跟随系统",
+    "changed": "语言切换成功"
   },
   "mePage": {
     "language": "语言",

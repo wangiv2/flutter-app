@@ -14,7 +14,8 @@
   },
   "languageListPage": {
     "title": "Language",
-    "auto": "Auto"
+    "auto": "Auto",
+    "changed": "Language change successfully"
   },
   "mePage": {
     "language": "Language",

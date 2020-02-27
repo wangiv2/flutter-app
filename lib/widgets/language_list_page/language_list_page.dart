@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/user_preference_entity.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
+import 'package:oktoast/oktoast.dart';
 
-class LanguageListPage extends NavigatorPageWidget {
+class LanguageListPage extends NavigationBarPageWidget {
   @override
   String getPageName() {
     return "LanguageListPage";
   }
 
   @override
-  NavigatorPageWidgetState<NavigatorPageWidget> getState() {
+  NavigationBarPageWidgetState<NavigationBarPageWidget> getState() {
     return _LanguageListPageState();
   }
 }
 
-class _LanguageListPageState extends NavigatorPageWidgetState<LanguageListPage> {
+class _LanguageListPageState extends NavigationBarPageWidgetState<LanguageListPage> {
   @override
   String getTitle() {
     return flutterI18nUtil.translate("languageListPage.title");
@@ -56,6 +57,7 @@ class _LanguageListPageState extends NavigatorPageWidgetState<LanguageListPage> 
         log("set language to ${userPref.language}");
         userPref.language = value;
         sharePreferencesUtil.setUserPreference(userPref);
+        showToast(flutterI18nUtil.translate("languageListPage.changed"));
       },
     );
   }
