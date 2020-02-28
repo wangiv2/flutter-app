@@ -1,4 +1,19 @@
 {
+  "common": {
+    "list": {
+      "pullDownRefresh": {
+        "complete": "Refresh data completed",
+        "failed": "Refresh data failed"
+      },
+      "pullUpLoadMore": {
+        "idle": "Pull up to load more data",
+        "releaseToLoad": "Release to load more data",
+        "loading": "Loading...",
+        "failed": "Load data failed",
+        "noData": "No more data"
+      }
+    }
+  },
   "homePage": {
     "title": "Home Page",
     "tabTitles": {

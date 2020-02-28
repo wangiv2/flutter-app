@@ -51,3 +51,71 @@ This is the tab bar base page widget with the common bottom tab bar, which exten
 | ---- | ---- | ---- |
 | List getPageList | nil | BottomNavigationBarItem corresponding to page content |
 | List\<BottomNavigationBarItem> getMenuList | nil | get the BottomNavigationBarItem list  |
+
+# List Page Widget
+This is the list view page widget with common action, such as pull down to refresh, pull up to load more action, 
+which extend from Navigation Bar Page Widget.
+
+### Interfaces
+| Name | Params | Description |
+| ---- | ---- | ---- |
+| Future onRefresh | nil | trigger by pull down list to refresh data |
+| Future onLoading | nil | trigger by pull up list to load more data  |
+| Widget getListView | nil | get the render list view widget  |
+
+### Sample
+```dart
+class _OpportunityPageState extends BaseListPageWidgetState<OpportunityPage> {
+
+  List<String> items = [];
+
+  @override
+  String getTitle() => "List Page";
+
+  @override
+  void onCreate() async {
+    super.onCreate();
+    showLoadingWidget();
+    await _getData(isRefresh: true);
+    hideLoadingWidget();
+  }
+
+  @override
+  Widget getListView() {
+    // Card(child: Center(child: Text(items[i])))
+    return ListView.builder(
+      itemBuilder: (c, i) => ListTile(
+        title: Text(items[i]),
+        trailing: new Icon(Icons.chevron_right, color: Colors.black26),
+        onTap: () {
+          Router.pushPage(context, OpportunityDetailPage(), params: items[i]);
+        },
+      ),
+      itemExtent: 100.0,
+      itemCount: items.length,
+    );
+  }
+
+  @override
+  Future onLoading() async {
+    return _getData(isLoadMore: true);
+  }
+
+  @override
+  Future onRefresh() async {
+    return _getData(isRefresh: true);
+  }
+
+  Future _getData({bool isRefresh = false, bool isLoadMore = false}) async {
+    return Future.delayed(Duration(milliseconds: 1000)).then((_) {
+      if (isRefresh) {
+        items.clear();
+        items.addAll(["1", "2", "3", "4", "5", "6", "7", "8"]);
+      }
+      if (isLoadMore) {
+        items.add((items.length+1).toString());
+      }
+    });
+  }
+}
+```

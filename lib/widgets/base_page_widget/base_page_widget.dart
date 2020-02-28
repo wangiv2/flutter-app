@@ -15,7 +15,7 @@ abstract class BasePageWidget extends StatefulWidget {
 abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
     with WidgetsBindingObserver, BaseFunction {
 
-  Object _pageParams;
+  Object pageParams;
   bool _onResumed = false;
   bool _onPause = false;
 
@@ -39,8 +39,8 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
       // first load
       if (RouterManager().isTopPage(this.widget)) {
         _onResumed = true;
-        if (_pageParams == null) {
-          _pageParams = ModalRoute.of(context).settings.arguments;
+        if (pageParams == null) {
+          pageParams = ModalRoute.of(context).settings.arguments;
         }
         onResume();
       }

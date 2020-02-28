@@ -21,11 +21,9 @@ class _ChatPageState extends NavigationBarPageWidgetState<ChatPage> {
   void onCreate() async {
     super.onCreate();
     showLoadingWidget();
-    await Future.delayed(Duration(seconds: 2)).then((_){
-      log("delayed done");
-      hideLoadingWidget();
-      showNoDataWidget();
-    });
+    await Future.delayed(Duration(seconds: 1));
+    hideLoadingWidget();
+    showNoDataWidget();
   }
 
   @override
@@ -33,7 +31,6 @@ class _ChatPageState extends NavigationBarPageWidgetState<ChatPage> {
     return Center(
       child: Column(
         children: <Widget>[
-          Text("I am Chat Index Page")
         ],
       ),
     );

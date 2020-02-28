@@ -9,14 +9,14 @@ abstract class BaseListPageWidgetState<T extends BaseListPageWidget> extends Nav
 
   void _onRefresh() async{
     await onRefresh();
+    if(mounted) setState(() {});
     // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
   }
 
   void _onLoading() async{
     await onLoading();
-    if(mounted)
-      setState(() {});
+    if(mounted) setState(() {});
     _refreshController.loadComplete();
   }
 
@@ -28,14 +28,15 @@ abstract class BaseListPageWidgetState<T extends BaseListPageWidget> extends Nav
         enablePullUp: true,
         header: WaterDropHeader(
             waterDropColor: Colors.deepPurple,
-            complete: Text("刷新数据完毕！"),
-            failed: Text("刷新数据失败！"),
+            complete: Text(flutterI18nUtil.translate("common.list.pullDownRefresh.complete")),
+            failed: Text(flutterI18nUtil.translate("common.list.pullDownRefresh.failed")),
         ),
         footer: ClassicFooter(
-            canLoadingText: "松开加载",
-            loadingText: "正在加载...",
-            failedText: "加载数据失败！",
-            noDataText: "没有更多数据！",
+            idleText: flutterI18nUtil.translate("common.list.pullUpLoadMore.idle"),
+            canLoadingText: flutterI18nUtil.translate("common.list.pullUpLoadMore.releaseToLoad"),
+            loadingText: flutterI18nUtil.translate("common.list.pullUpLoadMore.loading"),
+            failedText: flutterI18nUtil.translate("common.list.pullUpLoadMore.failed"),
+            noDataText: flutterI18nUtil.translate("common.list.pullUpLoadMore.noData"),
 
         ),
         controller: _refreshController,

@@ -1,4 +1,19 @@
 {
+  "common": {
+    "list": {
+      "pullDownRefresh": {
+        "complete": "刷新数据完毕",
+        "failed": "刷新数据失败"
+      },
+      "pullUpLoadMore": {
+        "idle": "上拉加载更多数据",
+        "releaseToLoad": "松开加载",
+        "loading": "正在加载...",
+        "failed": "加载数据失败",
+        "noData": "没有更多数据"
+      }
+    }
+  },
   "homePage": {
     "title": "主页",
     "tabTitles": {

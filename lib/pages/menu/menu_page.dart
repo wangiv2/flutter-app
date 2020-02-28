@@ -40,8 +40,7 @@ class _MenuPageState extends NavigationBarPageWidgetState<MenuPage> {
     return new InkWell(
       onTap: action,
       child: new Padding(
-        padding: const EdgeInsets.only(
-            left: 10.0, right: 10.0, bottom: 5.0, top: 5.0),
+        padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0, top: 5.0),
         child: new Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
