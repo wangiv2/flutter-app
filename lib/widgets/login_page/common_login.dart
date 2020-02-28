@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/http/http_manager.dart';
+import 'package:flutter_app/utils/http/http_method.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -105,7 +107,11 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30.0),
                       ),
                       color: Colors.redAccent,
-                      onPressed: () => {},
+                      onPressed: () async {
+                        print('hello .... ');
+                        var res = await httpManager.netFetch(Method.GET, "http://localhost:3000/service-request?pageNumber=0&pageSize=2");
+                        return null;
+                      },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           vertical: 20.0,

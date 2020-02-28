@@ -7,16 +7,27 @@ import 'package:flutter_app/utils/http/interceptors/token_interceptor.dart';
 import 'package:flutter_app/utils/http/result_data.dart';
 
 class HttpManager {
-  Dio _dio = new Dio();
+  Dio _dio;
+  Dio get dio => _dio;
+
   CancelToken _token = CancelToken();
 
-  HttpManager() {
-    _dio.interceptors
-      ..add(LogInterceptor())
-      ..add(HeaderInterceptors())
-      ..add(TokenInterceptors())
-      ..add(ErrorInterceptors())
-      ..add(ResponseInterceptor());
+  static final HttpManager _instance = HttpManager._internal();
+
+  factory HttpManager() => _instance;
+
+  HttpManager._internal() {
+    if (_dio == null) {
+      print('new dio ....');
+      _dio = new Dio();
+
+      _dio.interceptors
+        ..add(HeaderInterceptors())
+        ..add(TokenInterceptors())
+        ..add(ErrorInterceptors())
+        ..add(ResponseInterceptor())
+        ..add(LogInterceptor());
+    }
   }
 
   Future<ResultData> netFetch(String method, String url, {

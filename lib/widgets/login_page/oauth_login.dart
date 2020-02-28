@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/oauth_entity_entity.dart';
 import 'package:flutter_app/utils/http/http_manager.dart';
 import 'package:flutter_app/utils/http/http_method.dart';
+import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
+import 'package:flutter_app/widgets/login_page/oauth_service.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 
@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     flutterWebviewPlugin.close();
 
     flutterWebviewPlugin.launch(
-        'https://oauth.oocl.com/oauthserver/oauth/authorize?client_id=c733d56d77bb4a888943a8e87886fcf4&redirect_uri=http://mobileoauth/ospapp&response_type=code&state=osp',
+        'https://oauth.oocl.com/oauthserver/oauth/authorize?client_id=6a4e409ea4a4441dbd4c6de60523f35c&redirect_uri=http://mobileoauth/easapp&response_type=code&state=eas',
         clearCache: true,
         clearCookies: true,
         hidden: true);
@@ -57,16 +57,12 @@ class _LoginPageState extends State<LoginPage> {
     flutterWebviewPlugin.onStateChanged.listen((WebViewStateChanged state) async {
       var type = state.type;
       var url = state.url;
-      print('type ====== $type');
-      print('url ====== $url');
 
       if (type == WebViewState.finishLoad) {
         var str = "\$('#username').attr('placeholder', '用户名');";
         flutterWebviewPlugin.evalJavascript(str);
 
-        print('isFirstLoad ====== $isFirstLoad');
         if (isFirstLoad && url.contains("/loginform")) {
-          print('isFirstLoad2333333 ====== $isFirstLoad');
           flutterWebviewPlugin.show();
           setState(() {
             isFirstLoad = false;
@@ -80,9 +76,7 @@ class _LoginPageState extends State<LoginPage> {
 
         if (code != null) {
           flutterWebviewPlugin.hide();
-          OAuthEntityEntity oauthEntityEntity = await this.getToken(code);
-          print('get oauth code .... ${oauthEntityEntity.accessToken}');
-
+          await oauthService.getToken(code);
           flutterWebviewPlugin.close();
 
           setState(() {
@@ -93,29 +87,61 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  Future<OAuthEntityEntity> getToken(String code) async {
-    var params = {
-      "client_id": "c733d56d77bb4a888943a8e87886fcf4",
-      "client_secret": "bc73e7a7cb7a4281b1be967d3e341e81",
-      "grant_type": "authorization_code",
-      "redirect_uri": "http://mobileoauth/ospapp",
-      "code": code
-    };
-
-    var res = await httpManager.netFetch(
-        Method.POST, 'https://oauth.oocl.com/oauthserver/oauth/token',
-        data: params,
-        option: Options(contentType: Headers.formUrlEncodedContentType));
-    OAuthEntityEntity oauthResponse = OAuthEntityEntity().fromJson(res.data);
-    return oauthResponse;
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Column(
+          children: <Widget>[
+            Expanded(child: UnconstrainedBox(child: CircularProgressIndicator())),
+            FlatButton(
+              onPressed: () async {
+                try {
+                  var res = await httpManager.netFetch(Method.GET, "https://eapgateway.oocl.com/api/v1/user/getCurrentUser");
+                  var res2 = await httpManager.netFetch(Method.GET, "https://eapgateway.oocl.com/api/v1/user/getCurrentUser");
+                  print('res ==== ${res.data}');
+                  print('res2 ==== ${res2.data}');
+                } catch (e) {
+                  print('http error : $e');
+                }
+              },
+              child: Text("Get User"),
+            ),
+            FlatButton(
+              onPressed: () async {
+                await oauthService.refreshToken();
+              },
+              child: Text("Refresh Token"),
+            ),
+            FlatButton(
+              onPressed: () async {
+                String token = SpUtil.getString("access_token");
+                print('Display Token: $token');
+              },
+              child: Text("Display Token"),
+            ),
+            FlatButton(
+              onPressed: () async {
+                await oauthService.revokeToken();
+              },
+              child: Text("Revoke Token"),
+            ),
+            FlatButton(
+              onPressed: () async {
+                await SpUtil.putString("access_token", "error");
+              },
+              child: Text("Set Error Access Token"),
+            ),
+            FlatButton(
+              onPressed: () async {
+                await SpUtil.putString("access_token", "error");
+                await SpUtil.putString("refresh_token", "error");
+              },
+              child: Text("Set Error All Token"),
+            ),
+            Expanded(child: Container())
+          ],
+        ),
       ),
     );
   }
