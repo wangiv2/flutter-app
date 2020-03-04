@@ -3,6 +3,7 @@ import 'package:flutter_app/pages/menu/opportunity_page.dart';
 import 'package:flutter_app/routers/router.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
+import 'package:flutter_app/config/app_config.dart';
 
 class MenuPage extends NavigationBarPageWidget {
   @override
@@ -15,7 +16,10 @@ class MenuPage extends NavigationBarPageWidget {
 class _MenuPageState extends NavigationBarPageWidgetState<MenuPage> {
 
   @override
-  String getTitle() => flutterI18nUtil.translate("homePage.tabTitles.menu");
+  String getTitle() {
+    String title = flutterI18nUtil.translate("homePage.tabTitles.menu");
+    return '${title} ${AppConfig.getInstance().configEntity.env}';
+  }
 
   @override
   Widget buildContentWidget(BuildContext context) {
