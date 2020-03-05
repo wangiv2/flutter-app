@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/routers/router.dart';
+import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/utils/index.dart';
 
 abstract class BasePageWidget extends StatefulWidget {
+
+  BasePageWidget({Key key}) : super(key: key);
+
   @override
   BasePageWidgetState createState() {
     return getState();
@@ -15,7 +18,6 @@ abstract class BasePageWidget extends StatefulWidget {
 abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
     with WidgetsBindingObserver, BaseFunction {
 
-  Object pageParams;
   bool _onResumed = false;
   bool _onPause = false;
 
@@ -23,7 +25,7 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
   @override
   void initState() {
     initBaseFunction(this);
-    RouterManager().addWidget(this.widget);
+    RouterNavigator.routerStack.addWidget(this.widget);
     WidgetsBinding.instance.addObserver(this);
     onCreate();
     super.initState();
@@ -37,11 +39,8 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
   Widget build(BuildContext context) {
     if (!_onResumed) {
       // first load
-      if (RouterManager().isTopPage(this.widget)) {
+      if (RouterNavigator.routerStack.isTopPage(this.widget)) {
         _onResumed = true;
-        if (pageParams == null) {
-          pageParams = ModalRoute.of(context).settings.arguments;
-        }
         onResume();
       }
     }
@@ -50,7 +49,7 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
 
   @override
   void deactivate() {
-    if (RouterManager().isSecondTop(this.widget)) {
+    if (RouterNavigator.routerStack.isSecondTop(this.widget)) {
       if (!_onPause) {
         onPause();
         _onPause = true;
@@ -58,7 +57,7 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
         onResume();
         _onPause = false;
       }
-    } else if (RouterManager().isTopPage(this.widget)) {
+    } else if (RouterNavigator.routerStack.isTopPage(this.widget)) {
       if (!_onPause) {
         onPause();
       }
@@ -73,7 +72,7 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
     _onResumed = false;
     _onPause = false;
     // remove page in router manager
-    RouterManager().removeWidget(this.widget);
+    RouterNavigator.routerStack.removeWidget(this.widget);
     // cancel http request
 //    HttpManager.cancelHttp(getWidgetName());
     super.dispose();
@@ -83,13 +82,13 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       //on resume
-      if (RouterManager().isTopPage(this.widget)) {
+      if (RouterNavigator.routerStack.isTopPage(this.widget)) {
         onForeground();
         onResume();
       }
     } else if (state == AppLifecycleState.paused) {
       //onpause
-      if (RouterManager().isTopPage(this.widget)) {
+      if (RouterNavigator.routerStack.isTopPage(this.widget)) {
         onBackground();
         onPause();
       }
@@ -99,22 +98,22 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
 
   /* page lifecycle define, can be overridden */
   void onCreate() {
-    log("onCreate");
+    consoleLog("onCreate");
   }
   void onResume() {
-    log("onResume");
+    consoleLog("onResume");
   }
   void onPause() {
-    log("onPause");
+    consoleLog("onPause");
   }
   void onBackground() {
-    log("onBackground");
+    consoleLog("onBackground");
   }
   void onForeground() {
-    log("onForeground");
+    consoleLog("onForeground");
   }
   void onDestroy() {
-    log("onDestroy");
+    consoleLog("onDestroy");
   }
 
   /* interfaces */

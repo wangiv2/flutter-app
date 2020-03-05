@@ -1,8 +1,16 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/opportunity/model/opportunity_entity.dart';
+import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 
 class OpportunityDetailPage extends NavigationBarPageWidget {
+
+  final OpportunityEntity opportunity;
+
+  OpportunityDetailPage({Key key, @required this.opportunity}) : super(key: key);
+
   @override
   String getPageName() => "OpportunityDetailPage";
 
@@ -20,7 +28,7 @@ class _OpportunityDetailPageState extends NavigationBarPageWidgetState<Opportuni
     super.onCreate();
     showLoadingWidget();
     await _getData();
-    _content = "Detail page: $pageParams";
+    _content = "Detail page: ${widget.opportunity.content}";
     setState(() {});
     hideLoadingWidget();
   }
@@ -28,13 +36,23 @@ class _OpportunityDetailPageState extends NavigationBarPageWidgetState<Opportuni
   @override
   Widget buildContentWidget(BuildContext context) {
     return Center(
-      child: Text(_content),
+      child: Column(
+        children: <Widget>[
+          Text(_content),
+          MaterialButton(
+            child: Text("Back"),
+            onPressed: () {
+              RouterNavigator.goBackWithParams(context, widget.opportunity);
+            },
+          )
+        ],
+      ),
     );
   }
 
   @override
   String getTitle() {
-    return pageParams;
+    return widget.opportunity.id.toString();
   }
 
   Future _getData() {

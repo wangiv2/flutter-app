@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 import 'package:flutter_app/widgets/language_list_page/language_list_page.dart';
-import 'package:flutter_app/routers/router.dart';
 
 class MePage extends NavigationBarPageWidget {
   @override
@@ -24,7 +24,7 @@ class _MePageState extends NavigationBarPageWidgetState<MePage> {
     return ListView(
       children: <Widget>[
         _buildListItem(flutterI18nUtil.translate("mePage.language"), () {
-          Router.pushPage(context, LanguageListPage());
+//          Router.pushPage(context, LanguageListPage());
         }),
         Center(
           child: Column(

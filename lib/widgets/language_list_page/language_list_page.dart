@@ -54,7 +54,7 @@ class _LanguageListPageState extends NavigationBarPageWidgetState<LanguageListPa
         if (userPref == null) {
           userPref = new UserPreferenceEntity();
         }
-        log("set language to ${userPref.language}");
+        consoleLog("set language to ${userPref.language}");
         userPref.language = value;
         sharePreferencesUtil.setUserPreference(userPref);
         showToast(flutterI18nUtil.translate("languageListPage.changed"));

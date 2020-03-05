@@ -22,7 +22,7 @@ abstract class BaseFunction {
   SharedPreferencesUtil get sharePreferencesUtil => _sharePreferencesUtil;
   FlutterI18nUtil get flutterI18nUtil => _flutterI18nUtil;
 
-  void log(Object object) {
+  void consoleLog(Object object) {
     BasePageWidget basePageWidget = _context.widget;
     print("[$basePageWidget] - $object");
   }
