@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
-import 'package:flutter_app/widgets/language_list_page/language_list_page.dart';
 
 class MePage extends NavigationBarPageWidget {
   @override

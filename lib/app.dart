@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/home/home_page.dart';
-import 'package:flutter_app/routers/router.dart';
+import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/utils/flutterI18n/index.dart';
-import 'package:flutter_app/utils/shared_preferences/index.dart';
-import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
+
 import 'package:flutter_app/widgets/login_page/common_login.dart';
 import 'package:flutter_app/widgets/splash_page/index.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,19 +10,21 @@ import 'package:oktoast/oktoast.dart';
 
 import 'model/user_preference_entity.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  UserPreferenceEntity _userPref =
-      await SharedPreferencesUtil().getUserPreference();
-  await SpUtil.getInstance();
-  runApp(new MyApp(userPref: _userPref));
-}
+//void main() async {
+//  WidgetsFlutterBinding.ensureInitialized();
+//  UserPreferenceEntity _userPref =
+//      await SharedPreferencesUtil().getUserPreference();
+//  await SpUtil.getInstance();
+//  runApp(new MyApp(userPref: _userPref));
+//}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  MyApp({Key key, @required this.userPref}) : super(key: key);
-
   final UserPreferenceEntity userPref;
+
+  MyApp({@required this.userPref}) {
+    RouterNavigator.init();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +49,8 @@ class MyApp extends StatelessWidget {
             Locale('en', 'US'), // 美国英语
             Locale('zh', 'CN'), // 中文简体
           ],
-          home: _getHomePage(false, true),
           // TODO: need to recover the code when in prod: (_isFirstLaunch, _isLogin),
-          routes: Router.routers,
+          home: _getHomePage(false, true),
         ),
         // toast setting
         backgroundColor: Colors.black54,

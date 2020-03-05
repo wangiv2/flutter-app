@@ -110,6 +110,7 @@ class LoginPage extends StatelessWidget {
                       onPressed: () async {
                         print('hello .... ');
                         var res = await httpManager.netFetch(Method.GET, "http://localhost:3000/service-request?pageNumber=0&pageSize=2");
+                        print('res: $res');
                         return null;
                       },
                       child: Container(
