@@ -25,7 +25,8 @@
       "http401": {
         "title": "401 Error",
         "content": "Unauthorized"
-      }
+      },
+      "noData": "No data found"
     }
   },
   "splashPage": {

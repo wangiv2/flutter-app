@@ -61,6 +61,16 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
     return _getData(isRefresh: true);
   }
 
+  @override
+  List<Widget> getAppBarActions() {
+    return [
+      IconButton(
+        icon: Icon(Icons.search),
+        onPressed: gotoSearchPage,
+      ),
+    ];
+  }
+
   Future _getData({bool isRefresh = false, bool isLoadMore = false}) async {
     return Future.delayed(Duration(milliseconds: 1000)).then((_) {
       if (isRefresh) {
@@ -81,6 +91,10 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
         items.add(opportunity);
       }
     });
+  }
+
+  void gotoSearchPage() {
+    consoleLog("gotoSearchPage");
   }
 
 }

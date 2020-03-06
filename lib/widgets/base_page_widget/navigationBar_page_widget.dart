@@ -16,6 +16,8 @@ abstract class NavigationBarPageWidgetState<T extends NavigationBarPageWidget> e
     return Scaffold(
       appBar: AppBar(
         title: new Text(getTitle()),
+        centerTitle: true,
+        actions: getAppBarActions(),
       ),
       body: Flex(
         direction: Axis.vertical,
@@ -67,7 +69,7 @@ abstract class NavigationBarPageWidgetState<T extends NavigationBarPageWidget> e
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: Text("暂无数据~",
+                child: Text(flutterI18nUtil.translate('common.error.noData'),
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                     )),
@@ -104,6 +106,10 @@ abstract class NavigationBarPageWidgetState<T extends NavigationBarPageWidget> e
   void hideNoDataWidget() {
     _isShowNodata = false;
     setState(() {});
+  }
+
+  List<Widget> getAppBarActions() {
+    return [];
   }
 
   Widget buildContentWidget(BuildContext context);
