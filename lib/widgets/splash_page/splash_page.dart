@@ -5,21 +5,24 @@ import 'package:flutter_app/pages/home/router.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/utils/shared_preferences/index.dart';
 import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
+import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/login_page/router.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends BasePageWidget {
+  @override
+  String getPageName() => 'SplashPage';
 
   @override
-  _SplashPageState createState() => _SplashPageState();
+  BasePageWidgetState<BasePageWidget> getState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends BasePageWidgetState<SplashPage> {
   bool _isFirstLaunch = false;
   bool _isLogin = false;
   double _swiperOpacity = 0.0;
-  String _loadingText = "Loading...";
+  String _loadingText = '';
 
   final String _launchImage = 'assets/images/splash/splash_0.png';
   final List<String> _splashImages = [
@@ -29,28 +32,31 @@ class _SplashPageState extends State<SplashPage> {
   ];
 
   Future _initFunction() async {
-    RouterNavigator.init();
-
     // Get value from SP
     await SpUtil.getInstance();
     UserPreferenceEntity pref = await SharedPreferencesUtil().getUserPreference();
     String _lang = pref?.language;
     _isFirstLaunch = pref?.isFirstLaunch == null;
     _isLogin = pref?.isLogin != null;
-    _isFirstLaunch = false;
-    _isLogin = true;
-    print("initFunction userPref: language[$_lang] isFirstLaunch[$_isFirstLaunch] isLogin[$_isLogin]");
+    _isFirstLaunch = false; // TODO: need to remove
+    _isLogin = true; // TODO: need to remove
+    consoleLog("initFunction userPref: language[$_lang] isFirstLaunch[$_isFirstLaunch] isLogin[$_isLogin]");
     FlutterI18n.refresh(context, new Locale(_lang));
 
-    // testing
+    // update loading text
+    await Future.delayed(Duration(milliseconds: 100));
+    _loadingText = flutterI18nUtil.translate('splashPage.loading');
+    setState(() {});
+
+    // do the time-consuming operation
     await Future.delayed(Duration(seconds: 2));
   }
   void _gotoHomePage() {
-    print('gotoHomePage');
+    consoleLog('gotoHomePage');
     RouterNavigator.push(context, HomeRouter.homePage, replace: true, clearStack: true, transition: TransitionType.fadeIn);
   }
   void _gotoLoginPage() {
-    print('gotoLoginPage');
+    consoleLog('gotoLoginPage');
     RouterNavigator.present(context, LoginRouter.commonLogin);
   }
 
@@ -77,7 +83,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildWidget(BuildContext context) {
     return Material(
 //      color: ThemeUtils.getBackgroundColor(context),
         child: Stack(
@@ -106,7 +112,7 @@ class _SplashPageState extends State<SplashPage> {
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 18,
             ),
           ),
         )
@@ -145,5 +151,4 @@ class _SplashPageState extends State<SplashPage> {
       ),
     );
   }
-
 }

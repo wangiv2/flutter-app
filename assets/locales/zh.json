@@ -14,6 +14,9 @@
       }
     }
   },
+  "splashPage": {
+    "loading": "正在初始化..."
+  },
   "homePage": {
     "title": "主页",
     "tabTitles": {

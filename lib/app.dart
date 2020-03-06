@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/utils/flutterI18n/index.dart';
 import 'package:flutter_app/widgets/splash_page/splash_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:oktoast/oktoast.dart';
 
 class MyApp extends StatelessWidget {
+  MyApp(){
+    RouterNavigator.init();
+  }
 
   @override
   Widget build(BuildContext context) {
