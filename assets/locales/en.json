@@ -12,6 +12,20 @@
         "failed": "Load data failed",
         "noData": "No more data"
       }
+    },
+    "error": {
+      "http500": {
+        "title": "500 Error",
+        "content": "Internal Server Error"
+      },
+      "http404": {
+        "title": "404 Error",
+        "content": "Page Not Found"
+      },
+      "http401": {
+        "title": "401 Error",
+        "content": "Unauthorized"
+      }
     }
   },
   "splashPage": {

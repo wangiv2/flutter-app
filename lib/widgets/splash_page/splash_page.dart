@@ -1,13 +1,12 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/user_preference_entity.dart';
-import 'package:flutter_app/pages/home/router.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
+import 'package:flutter_app/routers/routers.dart';
 import 'package:flutter_app/utils/shared_preferences/index.dart';
 import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/login_page/router.dart';
-import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class SplashPage extends BasePageWidget {
@@ -53,7 +52,7 @@ class _SplashPageState extends BasePageWidgetState<SplashPage> {
   }
   void _gotoHomePage() {
     consoleLog('gotoHomePage');
-    RouterNavigator.push(context, HomeRouter.homePage, replace: true, clearStack: true, transition: TransitionType.fadeIn);
+    RouterNavigator.push(context, Routes.home, replace: true, clearStack: true, transition: TransitionType.fadeIn);
   }
   void _gotoLoginPage() {
     consoleLog('gotoLoginPage');

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/flutterI18n/index.dart';
 
 class ErrorPage500 extends StatelessWidget {
 
@@ -6,11 +7,36 @@ class ErrorPage500 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("500")
+        title: Text(FlutterI18nUtil(context).translate('common.error.http500.title'))
       ),
-      body: Center(
-        child: Text('500 Error'),
-      ),
+      body: Container(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 200),
+//      color: Colors.white,
+//      width: double.infinity,
+//      height: double.infinity,
+        child: Center(
+          child: Container(
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image(
+                  image: AssetImage("assets/images/ic_error_500.png"),
+                  width: 256,
+                  height: 256,
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Text(FlutterI18nUtil(context).translate('common.error.http500.content'),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      )),
+                )
+              ],
+            ),
+          ),
+        ),
+      )
     );
   }
 }

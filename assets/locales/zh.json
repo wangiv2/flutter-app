@@ -12,6 +12,20 @@
         "failed": "加载数据失败",
         "noData": "没有更多数据"
       }
+    },
+    "error": {
+      "http500": {
+        "title": "500 错误",
+        "content": "内部服务器错误"
+      },
+      "http404": {
+        "title": "404 错误",
+        "content": "页面未找到"
+      },
+      "http401": {
+        "title": "401 错误",
+        "content": "未授权页面"
+      }
     }
   },
   "splashPage": {

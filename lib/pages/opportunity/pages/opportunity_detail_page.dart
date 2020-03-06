@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/me/router.dart';
 import 'package:flutter_app/pages/opportunity/model/opportunity_entity.dart';
+import 'package:flutter_app/pages/opportunity/router.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
+import 'package:flutter_app/widgets/language_list_page/language_list_page.dart';
 
 class OpportunityDetailPage extends NavigationBarPageWidget {
 
@@ -43,6 +46,12 @@ class _OpportunityDetailPageState extends NavigationBarPageWidgetState<Opportuni
             child: Text("Back"),
             onPressed: () {
               RouterNavigator.goBackWithParams(context, widget.opportunity);
+            },
+          ),
+          MaterialButton(
+            child: Text("Go"),
+            onPressed: () {
+              RouterNavigator.push(context, MeRouter.languagePage);
             },
           )
         ],
