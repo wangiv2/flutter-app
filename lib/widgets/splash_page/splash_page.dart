@@ -41,7 +41,7 @@ class _SplashPageState extends BasePageWidgetState<SplashPage> {
     _isFirstLaunch = false; // TODO: need to remove
     _isLogin = true; // TODO: need to remove
     consoleLog("initFunction userPref: language[$_lang] isFirstLaunch[$_isFirstLaunch] isLogin[$_isLogin]");
-    FlutterI18n.refresh(context, new Locale(_lang));
+    flutterI18nUtil.refresh(lang: _lang);
 
     // update loading text
     await Future.delayed(Duration(milliseconds: 100));
