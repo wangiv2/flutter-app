@@ -1,6 +1,6 @@
 import 'package:flutter_app/model/oauth_entity_entity.dart';
 import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
-import 'package:flutter_app/widgets/login_page/oauth_repository.dart';
+import 'package:flutter_app/widgets/login_page/repository/oauth_repository.dart';
 
 abstract class IOauthService {
   Future<OAuthEntityEntity> getToken(String code);

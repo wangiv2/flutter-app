@@ -80,6 +80,7 @@ flutter:
   assets:
      - assets/locales/
      - assets/images/
+     - assets/images/splash/
      - assets/fonts/
      - lib/config/config.json
 

@@ -20,21 +20,21 @@ class RouterNavigator {
   }
 
   static push(BuildContext context, String path,
-      {String param, bool replace = false, bool clearStack = false}) {
+      {String param, bool replace = false, bool clearStack = false, TransitionType transition = TransitionType.native}) {
     FocusScope.of(context).unfocus();
     if(param != null) {
       path = '$path?$_paramKey=$param';
     }
-    router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: TransitionType.native);
+    router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: transition);
   }
 
   static pushResult(BuildContext context, String path, Function(Object) function,
-      {String param, bool replace = false, bool clearStack = false}) {
+      {String param, bool replace = false, bool clearStack = false, TransitionType transition = TransitionType.native}) {
     FocusScope.of(context).unfocus();
     if(param != null) {
       path = '$path?$_paramKey=$param';
     }
-    router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: TransitionType.native).then((result) {
+    router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: transition).then((result) {
       // 页面返回result为null
       if (result == null) {
         return;
@@ -61,6 +61,15 @@ class RouterNavigator {
   static goWebViewPage(BuildContext context, String title, String url) {
     //fluro 不支持传中文,需转换
     push(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}');
+  }
+
+  static present(BuildContext context, String path,
+      {String param, bool replace = false, bool clearStack = false}) {
+    FocusScope.of(context).unfocus();
+    if(param != null) {
+      path = '$path?$_paramKey=$param';
+    }
+    router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: TransitionType.inFromBottom);
   }
 
   static String encodeObjectParam(Map<String, dynamic> param) {

@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/http/http_manager.dart';
 import 'package:flutter_app/utils/http/http_method.dart';
 import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
-import 'package:flutter_app/widgets/login_page/oauth_service.dart';
+import 'package:flutter_app/widgets/login_page/service/oauth_service.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
 
-class LoginPage extends StatefulWidget {
+class OAuthLoginPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _OAuthLoginPageState createState() => _OAuthLoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _OAuthLoginPageState extends State<OAuthLoginPage> {
   final flutterWebviewPlugin = new FlutterWebviewPlugin();
   bool isLoading = false;
   bool isFirstLoad = true;

@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_app/utils/http/exceptions/not_success_exception.dart';
 import 'package:flutter_app/utils/http/exceptions/unauthorized_exception.dart';
 import 'package:flutter_app/utils/http/http_manager.dart';
-import 'package:flutter_app/widgets/login_page/oauth_service.dart';
+import 'package:flutter_app/widgets/login_page/service/oauth_service.dart';
 
 class ErrorInterceptors extends InterceptorsWrapper {
   @override

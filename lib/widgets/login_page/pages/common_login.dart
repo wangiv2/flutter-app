@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/http/http_manager.dart';
 import 'package:flutter_app/utils/http/http_method.dart';
 
-class LoginPage extends StatelessWidget {
+class CommonLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

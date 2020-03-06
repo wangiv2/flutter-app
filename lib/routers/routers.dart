@@ -1,9 +1,11 @@
 
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/home/home_page.dart';
+import 'package:flutter_app/pages/home/pages/home_page.dart';
+import 'package:flutter_app/pages/me/router.dart';
 import 'package:flutter_app/pages/opportunity/router.dart';
 import 'package:flutter_app/widgets/error_page_widget/404.dart';
+import 'package:flutter_app/widgets/login_page/router.dart';
 
 class Routes {
 
@@ -31,6 +33,8 @@ class Routes {
 
     _listRouter.clear();
     /// 各自路由由各自模块管理，统一在此添加初始化
+    _listRouter.add(LoginRouter());
+    _listRouter.add(MeRouter());
     _listRouter.add(OpportunityRouter());
 
     /// 初始化路由

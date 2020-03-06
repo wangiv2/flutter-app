@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/chat/chat_page.dart';
-import 'package:flutter_app/pages/me/me_page.dart';
+import 'package:flutter_app/pages/me/pages/me_page.dart';
 import 'package:flutter_app/pages/menu/menu_page.dart';
 import 'package:flutter_app/widgets/base_page_widget/tabBar_page_widget.dart';
 

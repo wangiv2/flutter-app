@@ -57,7 +57,9 @@ class _LanguageListPageState extends NavigationBarPageWidgetState<LanguageListPa
         consoleLog("set language to ${userPref.language}");
         userPref.language = value;
         sharePreferencesUtil.setUserPreference(userPref);
-        showToast(flutterI18nUtil.translate("languageListPage.changed"));
+        Future.delayed(Duration(milliseconds: 200)).then((_) {
+          showToast(flutterI18nUtil.translate("languageListPage.changed"));
+        });
       },
     );
   }
