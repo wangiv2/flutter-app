@@ -5,6 +5,8 @@ import 'package:flutter_app/pages/opportunity/router.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/list_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
+import 'package:flutter_app/widgets/search_page_widget/opportunity_search_page.dart';
+import 'package:flutter_app/widgets/search_page_widget/search_page_delegate.dart';
 
 class OpportunityListPage extends BaseListPageWidget{
   @override
@@ -95,6 +97,7 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
 
   void gotoSearchPage() {
     consoleLog("gotoSearchPage");
+    showSearchPage(context: context, delegate: OpportunitySearchPage());
   }
 
 }
