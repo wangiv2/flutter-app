@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/flutterI18n/index.dart';
 import 'package:flutter_app/widgets/search_page_widget/search_page_delegate.dart';
@@ -7,16 +8,24 @@ import 'package:flutter_app/widgets/ui_widgets/noData_widget.dart';
 class CommonSearchDelegate extends SearchPageDelegate<String>{
 
   List<String> suggestionItems = [];
-  Function(String query) onSearch;
+  Future Function(String query) onSearch;
+  Widget Function(BuildContext context, Object item) buildResultItem;
 
-  CommonSearchDelegate({this.suggestionItems, @required this.onSearch}) : super();
+  List<Object> _resultItems = [];
 
-  bool _isShowLoading = false;
-  bool _isShowNodata = false;
+  CommonSearchDelegate({this.suggestionItems, @required this.onSearch, @required this.buildResultItem}) : super();
 
   @override
   String getPlaceHolderText(BuildContext context) {
     return FlutterI18nUtil(context).translate('common.searchPage.placeHolder');
+  }
+
+  @override
+  void onSubmitted(BuildContext context) async {
+    showLoading(context);
+    _resultItems = await onSearch(query);
+    print('_resultItems: $_resultItems');
+    showResults(context);
   }
 
   @override
@@ -40,20 +49,20 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
   }
 
   @override
+  Widget buildLoading(BuildContext context) {
+    return LoadingWidget();
+  }
+
+  @override
   Widget buildResults(BuildContext context) {
-    if (_isShowLoading) {
-      return LoadingWidget();
-    } else if (_isShowNodata) {
+    if (_resultItems.length == 0) {
       return NoDataWidget();
     } else {
-      return Container(
-        alignment: Alignment.topLeft,
-        child: Text('Search Results'),
+      return ListView.builder(
+        itemCount: _resultItems.length,
+        itemBuilder: (BuildContext context, int index) => buildResultItem(context, _resultItems[index]),
       );
     }
-
-//    onSearch(query);
-
   }
 
   @override
@@ -75,7 +84,6 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
             Container(
               child: Wrap(
                 spacing: 10,
-                // runSpacing: 0,
                 children: suggestionItems.map((item) {
                   return buildSuggestItem(context, item);
                 }).toList(),
@@ -93,20 +101,20 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
 
   Widget buildSuggestItem(BuildContext context, String text) {
     return Container(
-      child: InkWell(
+      child: CupertinoButton(
+        padding: EdgeInsets.all(0.0),
+        onPressed: (){
+          print(text);
+          query = text;
+          onSubmitted(context);
+        },
         child: Chip(
           label: Text(text),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10)
           ),
         ),
-        onTap: () {
-          print(text);
-          query = text;
-          showResults(context);
-        },
-      ),
-      color: Colors.white,
+      )
     );
   }
 

@@ -105,7 +105,7 @@ class _SplashPageState extends BasePageWidgetState<SplashPage> {
           height: double.infinity,
         ),
         Positioned(
-          bottom: 100.0,
+          bottom: 20.0,
           child: Text(
             _loadingText,
             style: TextStyle(

@@ -114,8 +114,15 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
           suggestionItems: items,
           onSearch: (query) async {
             consoleLog('onSearch: $query');
-            await Future.delayed(Duration(seconds: 2));
-            return 'ok';
+            return await Future.delayed(Duration(seconds: 2)).then((_){
+              List<String> result = ['ivna','denny','rex'];
+              return result;
+            });
+          },
+          buildResultItem: (BuildContext context, Object item) {
+            return ListTile(
+              title: Text(item),
+            );
           }
         )
     );

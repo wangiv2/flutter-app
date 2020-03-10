@@ -20,7 +20,7 @@ class RouterNavigator {
   }
 
   static push(BuildContext context, String path,
-      {String param, bool replace = false, bool clearStack = false, TransitionType transition = TransitionType.native}) {
+      {String param, bool replace = false, bool clearStack = false, TransitionType transition = TransitionType.cupertino}) {
     FocusScope.of(context).unfocus();
     if(param != null) {
       path = '$path?$_paramKey=$param';
@@ -29,7 +29,7 @@ class RouterNavigator {
   }
 
   static pushResult(BuildContext context, String path, Function(Object) function,
-      {String param, bool replace = false, bool clearStack = false, TransitionType transition = TransitionType.native}) {
+      {String param, bool replace = false, bool clearStack = false, TransitionType transition = TransitionType.cupertino}) {
     FocusScope.of(context).unfocus();
     if(param != null) {
       path = '$path?$_paramKey=$param';
