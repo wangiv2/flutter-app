@@ -1,5 +1,9 @@
 {
   "common": {
+    "searchPage": {
+      "placeHolder": "Search",
+      "history": "History"
+    },
     "list": {
       "pullDownRefresh": {
         "complete": "Refresh data completed",

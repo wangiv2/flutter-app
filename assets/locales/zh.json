@@ -1,5 +1,9 @@
 {
   "common": {
+    "searchPage": {
+      "placeHolder": "搜索",
+      "history": "历史记录"
+    },
     "list": {
       "pullDownRefresh": {
         "complete": "刷新数据完毕",

@@ -7,7 +7,7 @@ class AppConfig  {
   factory AppConfig() => getInstance();
   ConfigEntity configEntity;
 
-  AppConfig._internal() {}
+  AppConfig._internal();
 
   static AppConfig getInstance() {
     if (_instance == null) {

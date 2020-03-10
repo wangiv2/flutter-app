@@ -5,7 +5,7 @@ import 'package:flutter_app/pages/opportunity/router.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/list_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
-import 'package:flutter_app/widgets/search_page_widget/opportunity_search_page.dart';
+import 'package:flutter_app/widgets/search_page_widget/common_search_delegate.dart';
 import 'package:flutter_app/widgets/search_page_widget/search_page_delegate.dart';
 
 class OpportunityListPage extends BaseListPageWidget{
@@ -97,7 +97,28 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
 
   void gotoSearchPage() {
     consoleLog("gotoSearchPage");
-    showSearchPage(context: context, delegate: OpportunitySearchPage());
+    List<String> items = [
+      '面试',
+      'Studio3',
+      '动画dfsfds',
+      '自定义View',
+      '性能优化',
+      'gradle',
+      'Camera',
+      '代码混淆 安全',
+      '逆向加固'
+    ];
+    showSearchPage(
+        context: context,
+        delegate: CommonSearchDelegate(
+          suggestionItems: items,
+          onSearch: (query) async {
+            consoleLog('onSearch: $query');
+            await Future.delayed(Duration(seconds: 2));
+            return 'ok';
+          }
+        )
+    );
   }
 
 }

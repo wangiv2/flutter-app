@@ -185,12 +185,17 @@ abstract class SearchPageDelegate<T> {
     final ThemeData theme = Theme.of(context);
     assert(theme != null);
     return theme.copyWith(
+      primaryColorBrightness: Brightness.light,
       primaryColor: Colors.white,
       primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.grey),
-      primaryColorBrightness: Brightness.light,
-      primaryTextTheme: theme.textTheme,
+      inputDecorationTheme: InputDecorationTheme(
+        border: InputBorder.none,
+        hintStyle: TextStyle(color: Colors.grey)
+      )
     );
   }
+
+  String getPlaceHolderText(BuildContext context);
 
   /// The current query string shown in the [AppBar].
   ///
@@ -458,7 +463,7 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterialLocalizations(context));
     final ThemeData theme = widget.delegate.appBarTheme(context);
-    final String searchFieldLabel = widget.delegate.searchFieldLabel
+    final String searchFieldLabel = widget.delegate.getPlaceHolderText(context)
         ?? MaterialLocalizations.of(context).searchFieldLabel;
     Widget body;
     switch(widget.delegate._currentBody) {
@@ -499,27 +504,30 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
           brightness: theme.primaryColorBrightness,
           leading: widget.delegate.buildLeading(context),
           titleSpacing: 0.0,
-          automaticallyImplyLeading: true,
           title: TextField(
             controller: widget.delegate._queryTextController,
             focusNode: focusNode,
             style: theme.textTheme.title,
+            cursorColor: theme.inputDecorationTheme.hintStyle != null ? theme.inputDecorationTheme.hintStyle.color : Colors.grey,
             textInputAction: widget.delegate.textInputAction,
             keyboardType: widget.delegate.keyboardType,
             onSubmitted: (String _) {
               widget.delegate.showResults(context);
             },
             decoration: InputDecoration(
-//              border: InputBorder.none,
               hintText: searchFieldLabel,
-              hintStyle: theme.inputDecorationTheme.hintStyle,
-              filled: true,
-              fillColor: Colors.white,
               isDense: true,
-              contentPadding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide.none
+              hintStyle: theme.inputDecorationTheme.hintStyle,
+              filled: theme.inputDecorationTheme.filled,
+              fillColor: theme.inputDecorationTheme.fillColor,
+              contentPadding: theme.inputDecorationTheme.contentPadding,
+              border: theme.inputDecorationTheme.border ?? InputBorder.none,
+              suffixIcon: widget.delegate.query.isEmpty ? null : IconButton(
+                  icon: Icon(Icons.cancel, color: theme.inputDecorationTheme.hintStyle.color),
+                  onPressed: (){
+                    widget.delegate.query = '';
+                    FocusScope.of(context).requestFocus(focusNode);
+                  }
               )
             ),
           ),
