@@ -20,27 +20,16 @@ class OpportunityListPage extends BaseListPageWidget{
 
 class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListPage> {
 
-  List<OpportunityEntity> items = [];
+  List<OpportunityEntity> _items = [];
+
+  @override
+  bool get enableRefresh => true;
+
+  @override
+  bool get enableLoadMore => true;
 
   @override
   String getTitle() => flutterI18nUtil.translate("menuPage.opportunity");
-
-  @override
-  void onCreate() async {
-    super.onCreate();
-    showLoadingWidget();
-    await _getData();
-    hideLoadingWidget();
-  }
-
-  @override
-  Widget getListView() {
-    return ListView.builder(
-      itemBuilder: (c, i) => getListItem(items[i]),
-      itemExtent: 100.0,
-      itemCount: items.length,
-    );
-  }
 
   @override
   List<Widget> getAppBarActions() {
@@ -53,17 +42,15 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
   }
 
   @override
-  Future onRefresh() async {
-    hideNoDataWidget();
-    return await _getData();
+  Widget getListView() {
+    return ListView.builder(
+      itemBuilder: (c, i) => _getListItem(_items[i]),
+      itemExtent: 100.0,
+      itemCount: _items.length,
+    );
   }
 
-  @override
-  Future onLoadMore() async {
-    return await _getData(index: items.length);
-  }
-
-  Widget getListItem(OpportunityEntity item) {
+  Widget _getListItem(OpportunityEntity item) {
     return ListTile(
       title: Text(item.title),
       trailing: new Icon(Icons.chevron_right, color: Colors.black26),
@@ -78,21 +65,42 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
     );
   }
 
+  @override
+  Future onRefresh() async {
+    return await _getData();
+  }
+
+  @override
+  Future onLoadMore() async {
+    return await _getData(index: _items.length);
+  }
+
   Future _getData({int index = 0}) async {
     return OpportunityRepo.getList(index).then((list) {
-      if (index == 0) {
-        items.clear();
-      }
-      items.addAll(list);
-      if (index == 0 && items.length == 0) {
-        showNoDataWidget();
-      }
+      if (index == 0) _items.clear();
+      _items.addAll(list);
       return list.length == 0;
     });
   }
 
   void gotoSearchPage() {
-    consoleLog("gotoSearchPage");
+    showSearchPage(
+        context: context,
+        delegate: CommonSearchDelegate(
+          suggestionItems: getHistoryItems(),
+          onSearch: (query) async {
+            consoleLog('onSearch: $query');
+            return OpportunityRepo.getList(0);
+          },
+          buildResultItem: (BuildContext context, Object item) {
+            OpportunityEntity opportunity = item;
+            return _getListItem(opportunity);
+          }
+        )
+    );
+  }
+
+  List<String> getHistoryItems() {
     List<String> items = [
       '面试',
       'Studio3',
@@ -104,20 +112,9 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
       '代码混淆 安全',
       '逆向加固'
     ];
-    showSearchPage(
-        context: context,
-        delegate: CommonSearchDelegate(
-          suggestionItems: items,
-          onSearch: (query) async {
-            consoleLog('onSearch: $query');
-            return OpportunityRepo.getList(0);
-          },
-          buildResultItem: (BuildContext context, Object item) {
-            OpportunityEntity opportunity = item;
-            return getListItem(opportunity);
-          }
-        )
-    );
+    return items;
   }
+
+
 
 }

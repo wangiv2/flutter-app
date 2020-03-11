@@ -7,32 +7,51 @@ abstract class BaseListPageWidget extends NavigationBarPageWidget {}
 abstract class BaseListPageWidgetState<T extends BaseListPageWidget> extends NavigationBarPageWidgetState<T> {
   RefreshController _refreshController = RefreshController(initialRefresh: false);
 
-  bool _enablePullUp = false;
+  // attributes
+  bool enableRefresh = false;
+  bool enableLoadMore = false;
+
+  // interfaces
+  Future onRefresh();
+  Future onLoadMore();
+  Widget getListView();
+
+  // Internal properties and methods
+  bool _isNoData = true;
+
+  @override
+  void onCreate() async {
+    super.onCreate();
+    showLoadingWidget();
+    await _refresh();
+    hideLoadingWidget();
+  }
 
   void _onRefresh() async {
-    bool isNoMoreData = await onRefresh();
-    _enablePullUp = !isNoMoreData;
+    hideNoDataWidget();
+    await _refresh();
     if(mounted) setState(() {});
-    // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
+    _refreshController.resetNoData();
   }
 
   void _onLoading() async {
     bool isNoMoreData = await onLoadMore();
     if(mounted) setState(() {});
-    if (isNoMoreData) {
-      _refreshController.loadNoData();
-    } else {
-      _refreshController.loadComplete();
-    }
+    isNoMoreData ? _refreshController.loadNoData() : _refreshController.loadComplete();
+  }
+
+  Future _refresh() async {
+    _isNoData = await onRefresh();
+    if (_isNoData) showNoDataWidget();
   }
 
   @override
   Widget buildContentWidget(BuildContext context) {
     return Scaffold(
       body: SmartRefresher(
-        enablePullDown: true,
-        enablePullUp: _enablePullUp,
+        enablePullDown: enableRefresh,
+        enablePullUp: enableLoadMore && !_isNoData,
         header: WaterDropHeader(
             waterDropColor: Colors.deepPurple,
             complete: Text(flutterI18nUtil.translate("common.list.pullDownRefresh.complete")),
@@ -53,9 +72,4 @@ abstract class BaseListPageWidgetState<T extends BaseListPageWidget> extends Nav
       ),
     );
   }
-
-  Future onRefresh();
-  Future onLoadMore();
-  Widget getListView();
-
 }
