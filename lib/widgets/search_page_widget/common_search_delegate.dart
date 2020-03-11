@@ -24,7 +24,6 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
   void onSubmitted(BuildContext context) async {
     showLoading(context);
     _resultItems = await onSearch(query);
-    print('_resultItems: $_resultItems');
     showResults(context);
   }
 

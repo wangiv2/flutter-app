@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/ui_widgets/loading_widget.dart';
 import 'package:flutter_app/widgets/ui_widgets/noData_widget.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 abstract class NavigationBarPageWidget extends BasePageWidget{
   NavigationBarPageWidget({Key key}) : super(key: key);

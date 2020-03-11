@@ -60,7 +60,7 @@ which extend from Navigation Bar Page Widget.
 | Name | Params | Description |
 | ---- | ---- | ---- |
 | Future onRefresh | nil | trigger by pull down list to refresh data |
-| Future onLoading | nil | trigger by pull up list to load more data  |
+| Future onLoadMore | nil | trigger by pull up list to load more data  |
 | Widget getListView | nil | get the render list view widget  |
 
 ### Sample
@@ -76,7 +76,7 @@ class _OpportunityPageState extends BaseListPageWidgetState<OpportunityPage> {
   void onCreate() async {
     super.onCreate();
     showLoadingWidget();
-    await _getData(isRefresh: true);
+    await _getData();
     hideLoadingWidget();
   }
 
@@ -97,7 +97,7 @@ class _OpportunityPageState extends BaseListPageWidgetState<OpportunityPage> {
   }
 
   @override
-  Future onLoading() async {
+  Future onLoadMore() async {
     return _getData(isLoadMore: true);
   }
 

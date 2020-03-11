@@ -27,6 +27,9 @@ Map<String, dynamic> userEntityToJson(UserEntity entity) {
 	data['account'] = entity.account;
 	data['token'] = entity.token;
 	data['momeny'] = entity.momeny;
-	data['loginDatetime'] = entity.loginDatetime;
+	if (entity.loginDatetime != null) {
+    DateFormat format = new DateFormat("yyyy-MM-dd HH:mm:ss");
+    data['loginDatetime'] = format.format(entity.loginDatetime);
+  }
 	return data;
 }
