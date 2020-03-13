@@ -1,7 +1,7 @@
-import 'package:flutter_app/model/profile_entity.dart';
-import 'package:flutter_app/model/oauth_entity.dart';
-import 'package:flutter_app/model/user_entity.dart';
-import 'package:flutter_app/model/version.dart';
+import 'package:flutter_app/entities/profile_entity.dart';
+import 'package:flutter_app/entities/oauth_entity.dart';
+import 'package:flutter_app/entities/user_entity.dart';
+import 'package:flutter_app/entities/version_entity.dart';
 
 profileEntityFromJson(ProfileEntity data, Map<String, dynamic> json) {
 	if (json['isFirstLaunch'] != null) {

@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/oauth_entity.dart';
+import 'package:flutter_app/entities/oauth_entity.dart';
 
 oAuthEntityFromJson(OAuthEntity data, Map<String, dynamic> json) {
 	if (json['access_token'] != null) {

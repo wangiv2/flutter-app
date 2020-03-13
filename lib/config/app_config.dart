@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/config_entity.dart';
+import 'package:flutter_app/entities/config_entity.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert' as convert;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/global.dart';
-import 'package:flutter_app/model/profile_entity.dart';
-import 'package:flutter_app/model/user_entity.dart';
+import 'package:flutter_app/entities/profile_entity.dart';
+import 'package:flutter_app/entities/user_entity.dart';
 
 class ProfileChangeNotifier extends ChangeNotifier {
   ProfileEntity get _profile => Global.profile;

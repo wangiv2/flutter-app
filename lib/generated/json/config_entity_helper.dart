@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/config_entity.dart';
+import 'package:flutter_app/entities/config_entity.dart';
 
 configEntityFromJson(ConfigEntity data, Map<String, dynamic> json) {
 	if (json['env'] != null) {

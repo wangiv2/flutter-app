@@ -2,7 +2,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/global.dart';
-import 'package:flutter_app/model/user_entity.dart';
+import 'package:flutter_app/entities/user_entity.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/routers/routers.dart';
 import 'package:flutter_app/utils/http/http_manager.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/version.dart';
+import 'package:flutter_app/entities/version_entity.dart';
 
 versionEntityFromJson(VersionEntity data, Map<String, dynamic> json) {
 	if (json['code'] != null) {

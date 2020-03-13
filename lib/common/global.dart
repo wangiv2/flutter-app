@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/generated/json/profile_entity_helper.dart';
-import 'package:flutter_app/model/profile_entity.dart';
+import 'package:flutter_app/entities/profile_entity.dart';
 import 'package:flutter_app/res/constants.dart';
 import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
 
