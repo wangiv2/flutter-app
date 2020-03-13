@@ -1,6 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter_app/generated/json/opportunity_entity_helper.dart';
-import 'package:flutter_app/pages/opportunity/model/opportunity_entity.dart';
+import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 import 'package:flutter_app/pages/opportunity/pages/opportunity_detail_page.dart';
 import 'package:flutter_app/pages/opportunity/pages/opportunity_list_page.dart';
 import 'package:flutter_app/routers/router_navigator.dart';

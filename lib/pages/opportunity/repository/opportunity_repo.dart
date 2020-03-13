@@ -1,4 +1,4 @@
-import 'package:flutter_app/pages/opportunity/model/opportunity_entity.dart';
+import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 
 class OpportunityRepo {
   static Future getList(int index) {

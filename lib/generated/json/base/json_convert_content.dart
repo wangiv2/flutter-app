@@ -13,7 +13,7 @@ import 'package:flutter_app/entities/oauth_entity.dart';
 import 'package:flutter_app/generated/json/oauth_entity_helper.dart';
 import 'package:flutter_app/entities/version_entity.dart';
 import 'package:flutter_app/generated/json/version_helper.dart';
-import 'package:flutter_app/pages/opportunity/model/opportunity_entity.dart';
+import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 import 'package:flutter_app/generated/json/opportunity_entity_helper.dart';
 
 class JsonConvert<T> {

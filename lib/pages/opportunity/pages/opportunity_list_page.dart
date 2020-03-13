@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/opportunity/model/opportunity_entity.dart';
+import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 import 'package:flutter_app/pages/opportunity/repository/opportunity_repo.dart';
 import 'package:flutter_app/pages/opportunity/router.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
@@ -20,7 +20,7 @@ class OpportunityListPage extends BaseListPageWidget{
 
 class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListPage> {
 
-  List<OpportunityEntity> _items = [];
+//  List<OpportunityEntity> _items = [];
 
   @override
   bool get enableRefresh => true;
@@ -44,9 +44,9 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
   @override
   Widget getListView() {
     return ListView.builder(
-      itemBuilder: (c, i) => _getListItem(_items[i]),
+      itemBuilder: (c, i) => _getListItem(listItemProvider().list[i]),
       itemExtent: 100.0,
-      itemCount: _items.length,
+      itemCount: listItemProvider().list.length,
     );
   }
 
@@ -72,13 +72,13 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
 
   @override
   Future onLoadMore() async {
-    return await _getData(index: _items.length);
+    return await _getData(index: listItemProvider(listen: false).list.length);
   }
 
   Future _getData({int index = 0}) async {
     return OpportunityRepo.getList(index).then((list) {
-      if (index == 0) _items.clear();
-      _items.addAll(list);
+      if (index == 0) listItemProvider(listen: false).clearItems();
+      listItemProvider(listen: false).addItems(list);
       return list.length == 0;
     });
   }

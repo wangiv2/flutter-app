@@ -1,4 +1,4 @@
-import 'package:flutter_app/pages/opportunity/model/opportunity_entity.dart';
+import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 
 opportunityEntityFromJson(OpportunityEntity data, Map<String, dynamic> json) {
 	if (json['id'] != null) {

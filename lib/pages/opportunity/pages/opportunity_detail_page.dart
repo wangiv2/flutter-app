@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/me/router.dart';
-import 'package:flutter_app/pages/opportunity/model/opportunity_entity.dart';
+import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
@@ -43,6 +43,7 @@ class _OpportunityDetailPageState extends NavigationBarPageWidgetState<Opportuni
           MaterialButton(
             child: Text("Back"),
             onPressed: () {
+              listItemProvider(listen: false).removeLastItems();
               RouterNavigator.goBackWithParams(context, widget.opportunity);
             },
           ),

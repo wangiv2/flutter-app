@@ -6,14 +6,6 @@ import 'package:flutter_app/entities/user_entity.dart';
 class ProfileChangeNotifier extends ChangeNotifier {
   ProfileEntity get _profile => Global.profile;
 
-  @override
-  void notifyListeners() {
-    Global.saveProfile();
-    super.notifyListeners();
-  }
-}
-
-class ProfileModel extends ProfileChangeNotifier {
   bool get isFirstLaunch => _profile.isFirstLaunch;
   set isFirstLaunch(bool isFirstLaunch) {
     _profile.isFirstLaunch = isFirstLaunch;
@@ -38,6 +30,12 @@ class ProfileModel extends ProfileChangeNotifier {
   set user(UserEntity user) {
     _profile.user = user;
     notifyListeners();
+  }
+
+  @override
+  void notifyListeners() {
+    Global.saveProfile();
+    super.notifyListeners();
   }
 }
 
