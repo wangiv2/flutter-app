@@ -1,6 +1,6 @@
-import 'package:flutter_app/model/oauth_entity_entity.dart';
+import 'package:flutter_app/model/oauth_entity.dart';
 
-oAuthEntityEntityFromJson(OAuthEntityEntity data, Map<String, dynamic> json) {
+oAuthEntityFromJson(OAuthEntity data, Map<String, dynamic> json) {
 	if (json['access_token'] != null) {
 		data.accessToken = json['access_token']?.toString();
 	}
@@ -19,7 +19,7 @@ oAuthEntityEntityFromJson(OAuthEntityEntity data, Map<String, dynamic> json) {
 	return data;
 }
 
-Map<String, dynamic> oAuthEntityEntityToJson(OAuthEntityEntity entity) {
+Map<String, dynamic> oAuthEntityToJson(OAuthEntity entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['access_token'] = entity.accessToken;
 	data['token_type'] = entity.tokenType;

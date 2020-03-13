@@ -58,18 +58,23 @@ class RouterNavigator {
   }
 
   /// 跳到WebView页
-  static goWebViewPage(BuildContext context, String title, String url) {
+  static void goWebViewPage(BuildContext context, String title, String url) {
     //fluro 不支持传中文,需转换
     push(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}');
   }
 
-  static present(BuildContext context, String path,
+  static void present(BuildContext context, String path,
       {String param, bool replace = false, bool clearStack = false}) {
     FocusScope.of(context).unfocus();
     if(param != null) {
       path = '$path?$_paramKey=$param';
     }
     router.navigateTo(context, path, replace: replace, clearStack: clearStack, transition: TransitionType.inFromBottom);
+  }
+
+  static void dismiss(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    Navigator.pop(context);
   }
 
   static String encodeObjectParam(Map<String, dynamic> param) {

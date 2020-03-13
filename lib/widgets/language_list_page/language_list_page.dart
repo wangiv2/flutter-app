@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/user_preference_entity.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -50,13 +49,8 @@ class _LanguageListPageState extends NavigationBarPageWidgetState<LanguageListPa
         }
         flutterI18nUtil.refresh(locale: locale);
         setState(() {}); // need to setState after refresh the language
-        UserPreferenceEntity userPref = await sharePreferencesUtil.getUserPreference();
-        if (userPref == null) {
-          userPref = new UserPreferenceEntity();
-        }
-        consoleLog("set language to ${userPref.language}");
-        userPref.language = value;
-        sharePreferencesUtil.setUserPreference(userPref);
+        profileProvider(listen: false).locale = value;
+        consoleLog("set language to $locale");
         Future.delayed(Duration(milliseconds: 200)).then((_) {
           showToast(flutterI18nUtil.translate("languageListPage.changed"));
         });

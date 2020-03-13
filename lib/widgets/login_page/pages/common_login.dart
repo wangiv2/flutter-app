@@ -1,5 +1,10 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/global.dart';
+import 'package:flutter_app/model/user_entity.dart';
+import 'package:flutter_app/routers/router_navigator.dart';
+import 'package:flutter_app/routers/routers.dart';
 import 'package:flutter_app/utils/http/http_manager.dart';
 import 'package:flutter_app/utils/http/http_method.dart';
 
@@ -108,9 +113,19 @@ class CommonLoginPage extends StatelessWidget {
                       ),
                       color: Colors.redAccent,
                       onPressed: () async {
-                        print('hello .... ');
-                        var res = await httpManager.netFetch(Method.GET, "http://localhost:3000/service-request?pageNumber=0&pageSize=2");
-                        print('res: $res');
+//                        print('hello .... ');
+//                        var res = await httpManager.netFetch(Method.GET, "http://localhost:3000/service-request?pageNumber=0&pageSize=2");
+//                        print('res: $res');
+                        Global.profile.user = new UserEntity(
+                            account: 'wangiv2',
+                            englishName: 'Ivan Wang',
+                            chineseName: '王志鹏',
+                            title: 'STE',
+                            email: 'Ivan.wang@oocl.com'
+                        );
+                        print('Login with ${Global.profile.user.toJson().toString()}');
+                        Global.saveProfile();
+                        RouterNavigator.push(context, Routes.home, replace: true, clearStack: true, transition: TransitionType.fadeIn);
                         return null;
                       },
                       child: Container(

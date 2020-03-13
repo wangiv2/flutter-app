@@ -1,10 +1,10 @@
-import 'package:flutter_app/model/oauth_entity_entity.dart';
+import 'package:flutter_app/model/oauth_entity.dart';
 import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
 import 'package:flutter_app/widgets/login_page/repository/oauth_repository.dart';
 
 abstract class IOauthService {
-  Future<OAuthEntityEntity> getToken(String code);
-  Future<OAuthEntityEntity> refreshToken();
+  Future<OAuthEntity> getToken(String code);
+  Future<OAuthEntity> refreshToken();
   Future<bool> revokeToken();
 }
 
@@ -14,17 +14,17 @@ class OauthService implements IOauthService {
   OauthService(this._oauthRepository);
 
   @override
-  Future<OAuthEntityEntity> getToken(String code) async {
-    OAuthEntityEntity oauthEntityEntity = await _oauthRepository.getToken(code);
-    _updateToken(oauthEntityEntity);
-    return oauthEntityEntity;
+  Future<OAuthEntity> getToken(String code) async {
+    OAuthEntity oauthEntity = await _oauthRepository.getToken(code);
+    _updateToken(oauthEntity);
+    return oauthEntity;
   }
 
   @override
-  Future<OAuthEntityEntity> refreshToken() async {
-    OAuthEntityEntity oauthEntityEntity = await _oauthRepository.refreshToken();
-    _updateToken(oauthEntityEntity);
-    return oauthEntityEntity;
+  Future<OAuthEntity> refreshToken() async {
+    OAuthEntity oauthEntity = await _oauthRepository.refreshToken();
+    _updateToken(oauthEntity);
+    return oauthEntity;
   }
 
   @override
@@ -36,11 +36,11 @@ class OauthService implements IOauthService {
     return revokeResult;
   }
 
-  _updateToken(OAuthEntityEntity oauthEntityEntity) async {
-    print('update token ....... ${oauthEntityEntity.accessToken}');
-    print('update refreshToken ....... ${oauthEntityEntity.refreshToken}');
-    await SpUtil.putString("access_token", oauthEntityEntity.accessToken);
-    await SpUtil.putString("refresh_token", oauthEntityEntity.refreshToken);
+  _updateToken(OAuthEntity oauthEntity) async {
+    print('update token ....... ${oauthEntity.accessToken}');
+    print('update refreshToken ....... ${oauthEntity.refreshToken}');
+    await SpUtil.putString("access_token", oauthEntity.accessToken);
+    await SpUtil.putString("refresh_token", oauthEntity.refreshToken);
   }
 
   _clearToken() async {

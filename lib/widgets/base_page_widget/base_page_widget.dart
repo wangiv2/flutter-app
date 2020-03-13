@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/funs.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
-import 'package:flutter_app/utils/index.dart';
+import 'package:flutter_app/utils/base_utils.dart';
 
 abstract class BasePageWidget extends StatefulWidget {
 
@@ -16,7 +17,7 @@ abstract class BasePageWidget extends StatefulWidget {
 }
 
 abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
-    with WidgetsBindingObserver, BaseFunction {
+    with WidgetsBindingObserver, BaseUtils, Funs {
 
   bool _onResumed = false;
   bool _onPause = false;
@@ -24,7 +25,8 @@ abstract class BasePageWidgetState<T extends BasePageWidget> extends State<T>
   /* widget state lifecycle */
   @override
   void initState() {
-    initBaseFunction(this);
+    initBaseUtils(this.context);
+    initFuns(this.context);
     RouterNavigator.routerStack.addWidget(this.widget);
     WidgetsBinding.instance.addObserver(this);
     onCreate();
