@@ -9,7 +9,7 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
 
   List<String> suggestionItems = [];
   Future Function(String query) onSearch;
-  Widget Function(BuildContext context, Object item) buildResultItem;
+  Widget Function(BuildContext context, int index, Object item) buildResultItem;
 
   List<Object> _resultItems = [];
 
@@ -59,7 +59,7 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
     } else {
       return ListView.builder(
         itemCount: _resultItems.length,
-        itemBuilder: (BuildContext context, int index) => buildResultItem(context, _resultItems[index]),
+        itemBuilder: (BuildContext context, int index) => buildResultItem(context, index, _resultItems[index]),
       );
     }
   }

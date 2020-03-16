@@ -43,7 +43,7 @@ class _OpportunityDetailPageState extends NavigationBarPageWidgetState<Opportuni
           MaterialButton(
             child: Text("Back"),
             onPressed: () {
-              listItemProvider(listen: false).removeLastItems();
+              widget.opportunity.title = 'update by detail';
               RouterNavigator.goBackWithParams(context, widget.opportunity);
             },
           ),

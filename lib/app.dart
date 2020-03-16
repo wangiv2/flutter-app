@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/provider/list_item_change_notifier.dart';
 import 'package:flutter_app/provider/profile_change_notifier.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/utils/flutterI18n/index.dart';
@@ -19,7 +18,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: <SingleChildWidget>[
         ChangeNotifierProvider.value(value: ProfileChangeNotifier()),
-        ChangeNotifierProvider.value(value: ListItemChangeNotifier()),
       ],
       child: OKToast(
           child: MaterialApp(

@@ -20,7 +20,8 @@ class OpportunityListPage extends BaseListPageWidget{
 
 class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListPage> {
 
-//  List<OpportunityEntity> _items = [];
+  int _selectedIndex = -1;
+  List<OpportunityEntity> _items = [];
 
   @override
   bool get enableRefresh => true;
@@ -44,22 +45,27 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
   @override
   Widget getListView() {
     return ListView.builder(
-      itemBuilder: (c, i) => _getListItem(listItemProvider().list[i]),
+      itemBuilder: (c, i) => _getListItem(_items[i], index:i),
       itemExtent: 100.0,
-      itemCount: listItemProvider().list.length,
+      itemCount: _items.length,
     );
   }
 
-  Widget _getListItem(OpportunityEntity item) {
+  Widget _getListItem(OpportunityEntity item, {int index = -1}) {
     return ListTile(
       title: Text(item.title),
       trailing: new Icon(Icons.chevron_right, color: Colors.black26),
       onTap: () {
+        _selectedIndex = index;
         String param = RouterNavigator.encodeObjectParam(item.toJson());
 //            RouterNavigator.push(context, OpportunityRouter.detailPage, param: param);
         RouterNavigator.pushResult(context, OpportunityRouter.detailPage, (data) {
-          OpportunityEntity opportunity = data;
-          consoleLog("return data: ${opportunity.content}");
+          consoleLog('_selectedIndex: $_selectedIndex');
+          if (_selectedIndex != -1) {
+            _items[_selectedIndex] = data;
+            setState(() {});
+          }
+          _selectedIndex = -1;
         }, param:param);
       },
     );
@@ -72,13 +78,13 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
 
   @override
   Future onLoadMore() async {
-    return await _getData(index: listItemProvider(listen: false).list.length);
+    return await _getData(index: _items.length);
   }
 
   Future _getData({int index = 0}) async {
     return OpportunityRepo.getList(index).then((list) {
-      if (index == 0) listItemProvider(listen: false).clearItems();
-      listItemProvider(listen: false).addItems(list);
+      if (index == 0) _items.clear();
+      _items.addAll(list);
       return list.length == 0;
     });
   }
@@ -92,7 +98,7 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
             consoleLog('onSearch: $query');
             return OpportunityRepo.getList(0);
           },
-          buildResultItem: (BuildContext context, Object item) {
+          buildResultItem: (BuildContext context, int index, Object item) {
             OpportunityEntity opportunity = item;
             return _getListItem(opportunity);
           }
