@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 import 'package:flutter_app/pages/opportunity/repository/opportunity_repo.dart';
 import 'package:flutter_app/pages/opportunity/router.dart';
-import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/list_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/search_page_widget/common_search_delegate.dart';
@@ -19,9 +18,6 @@ class OpportunityListPage extends BaseListPageWidget{
 }
 
 class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListPage> {
-
-  int _selectedIndex = -1;
-  List<OpportunityEntity> _items = [];
 
   @override
   bool get enableRefresh => true;
@@ -43,49 +39,47 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
   }
 
   @override
-  Widget getListView() {
-    return ListView.builder(
-      itemBuilder: (c, i) => _getListItem(_items[i], index:i),
-      itemExtent: 100.0,
-      itemCount: _items.length,
-    );
+  String getDetailPageRouter() => OpportunityRouter.detailPage;
+
+  @override
+  Widget buildItem(dynamic item) {
+    return _getListItem(item);
   }
 
-  Widget _getListItem(OpportunityEntity item, {int index = -1}) {
-    return ListTile(
-      title: Text(item.title),
-      trailing: new Icon(Icons.chevron_right, color: Colors.black26),
-      onTap: () {
-        _selectedIndex = index;
-        String param = RouterNavigator.encodeObjectParam(item.toJson());
-//            RouterNavigator.push(context, OpportunityRouter.detailPage, param: param);
-        RouterNavigator.pushResult(context, OpportunityRouter.detailPage, (data) {
-          consoleLog('_selectedIndex: $_selectedIndex');
-          if (_selectedIndex != -1) {
-            _items[_selectedIndex] = data;
-            setState(() {});
-          }
-          _selectedIndex = -1;
-        }, param:param);
-      },
+  Widget _getListItem(OpportunityEntity item) {
+    return SizedBox(
+      child: Card(
+        elevation: 5.0,  //设置阴影
+        child: Column(  // card只能有一个widget，但这个widget内容可以包含其他的widget
+          children: [
+            ListTile(
+              title: Text(
+                  item.title,
+                  style: TextStyle(fontWeight: FontWeight.w500)
+              ),
+              subtitle: Text(item.subTitle),
+              leading: new Icon(
+                Icons.contact_mail,
+                color: Colors.blue[500],
+                size: 34.0,
+              ),
+              trailing: Text(item.dateTime),
+            ),
+            ListTile(
+              title: Text(item.content),
+              trailing: item.isApproved ? Icon(Icons.check_circle, color: Colors.green, size: 20.0,): Container(width: 0, height: 0,),
+            ),
+
+          ],
+        ),
+      ),
     );
   }
 
   @override
-  Future onRefresh() async {
-    return await _getData();
-  }
-
-  @override
-  Future onLoadMore() async {
-    return await _getData(index: _items.length);
-  }
-
-  Future _getData({int index = 0}) async {
+  Future loadData({int index = 0}) {
     return OpportunityRepo.getList(index).then((list) {
-      if (index == 0) _items.clear();
-      _items.addAll(list);
-      return list.length == 0;
+      return list;
     });
   }
 
@@ -120,7 +114,4 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
     ];
     return items;
   }
-
-
-
 }

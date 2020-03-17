@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -12,12 +13,14 @@ abstract class BaseListPageWidgetState<T extends BaseListPageWidget> extends Nav
   bool enableLoadMore = false;
 
   // interfaces
-  Future onRefresh();
-  Future onLoadMore();
-  Widget getListView();
+  Future loadData({int index = 0});
+  Widget buildItem(dynamic item);
+  String getDetailPageRouter();
 
   // Internal properties and methods
   bool _isNoData = true;
+  int _selectedIndex = -1;
+  List<dynamic> _list = [];
 
   @override
   void onCreate() async {
@@ -36,13 +39,18 @@ abstract class BaseListPageWidgetState<T extends BaseListPageWidget> extends Nav
   }
 
   void _onLoading() async {
-    bool isNoMoreData = await onLoadMore();
+    List<dynamic> list = await loadData(index: _list.length);
+    _list.addAll(list);
+    bool isNoMoreData = list.length == 0;
     if(mounted) setState(() {});
     isNoMoreData ? _refreshController.loadNoData() : _refreshController.loadComplete();
   }
 
   Future _refresh() async {
-    _isNoData = await onRefresh();
+    _list.clear();
+    List<dynamic> list = await loadData();
+    _list.addAll(list);
+    _isNoData = list.length == 0;
     if (_isNoData) showNoDataWidget();
   }
 
@@ -68,7 +76,26 @@ abstract class BaseListPageWidgetState<T extends BaseListPageWidget> extends Nav
         controller: _refreshController,
         onRefresh: _onRefresh,
         onLoading: _onLoading,
-        child: getListView(),
+        child: ListView.builder(
+          itemBuilder: (c, i) {
+            return GestureDetector(
+              child: buildItem(_list[i]),
+              onTap: () {
+                _selectedIndex = i;
+                String param = RouterNavigator.encodeObjectParam(_list[i].toJson());
+                RouterNavigator.pushResult(context, getDetailPageRouter(), (data) {
+                  consoleLog('_selectedIndex: $_selectedIndex');
+                  if (_selectedIndex != -1) {
+                    _list[_selectedIndex] = data;
+                    setState(() {});
+                  }
+                  _selectedIndex = -1;
+                }, param:param);
+              },
+            );
+          },
+          itemCount: _list.length,
+        ),
       ),
     );
   }

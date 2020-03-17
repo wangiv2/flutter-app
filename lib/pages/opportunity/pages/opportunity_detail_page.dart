@@ -22,45 +22,58 @@ class OpportunityDetailPage extends NavigationBarPageWidget {
 
 class _OpportunityDetailPageState extends NavigationBarPageWidgetState<OpportunityDetailPage> {
 
-  String _content = "";
-
   @override
   void onCreate() async {
     super.onCreate();
     showLoadingWidget();
     await _getData();
-    _content = "Detail page: ${widget.opportunity.content}";
     setState(() {});
     hideLoadingWidget();
   }
 
   @override
   Widget buildContentWidget(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Text(_content),
-          MaterialButton(
-            child: Text("Back"),
-            onPressed: () {
-              widget.opportunity.title = 'update by detail';
-              RouterNavigator.goBackWithParams(context, widget.opportunity);
-            },
+    OpportunityEntity opportunity = widget.opportunity;
+    return Flex(
+      direction: Axis.vertical,
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            alignment: Alignment.topLeft,
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(opportunity.title, style: TextStyle(fontWeight: FontWeight.w500),),
+                Text(opportunity.subTitle),
+                Text(opportunity.content),
+                Text(opportunity.dateTime),
+              ],
+            ),
           ),
-          MaterialButton(
-            child: Text("Go"),
-            onPressed: () {
-              RouterNavigator.push(context, MeRouter.languagePage);
-            },
-          )
-        ],
-      ),
+        ),
+        Container(
+          padding: EdgeInsets.only(bottom: 20.0),
+          child: Center(
+            child: RaisedButton(
+              child: Text('Approve'),
+              color: Colors.blue,
+              textColor: Colors.white,
+              onPressed: () {
+                widget.opportunity.isApproved = true;
+                RouterNavigator.goBackWithParams(context, widget.opportunity);
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 
   @override
   String getTitle() {
-    return widget.opportunity.id.toString();
+    return widget.opportunity.title.toString();
   }
 
   Future _getData() {

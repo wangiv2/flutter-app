@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_app/utils/shared_preferences/sp_util.dart';
+import 'package:flustars/flustars.dart';
 
 class TokenInterceptors extends InterceptorsWrapper {
 

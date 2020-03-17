@@ -60,6 +60,8 @@ dependencies:
   webview_flutter: 0.3.19+4
   # 状态管理 https://github.com/rrousselGit/provider
   provider: ^4.0.4
+  # Flutter常用工具类库 https://github.com/Sky24n/flustars
+  flustars: ^0.2.6+1
 
 dev_dependencies:
   flutter_test:

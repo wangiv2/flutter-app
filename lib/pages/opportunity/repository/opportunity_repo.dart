@@ -1,3 +1,4 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 
 class OpportunityRepo {
@@ -12,7 +13,9 @@ class OpportunityRepo {
         OpportunityEntity opportunity = new OpportunityEntity();
         opportunity.id = i;
         opportunity.title = 'Title $i';
-        opportunity.content = 'Content $i';
+        opportunity.subTitle = 'Sub title: $i';
+        opportunity.content = 'This is the item\'s content $i';
+        opportunity.dateTime = DateUtil.formatDate(DateTime.now(), format: 'yyyy-MM-dd');
         list.add(opportunity);
       }
       return list;
