@@ -3,7 +3,7 @@ import 'package:flutter_app/common/global.dart';
 import 'package:flutter_app/entities/profile_entity.dart';
 import 'package:flutter_app/entities/user_entity.dart';
 
-class ProfileChangeNotifier extends ChangeNotifier {
+class ProfileProvider extends ChangeNotifier {
   ProfileEntity get _profile => Global.profile;
 
   bool get isFirstLaunch => _profile.isFirstLaunch;

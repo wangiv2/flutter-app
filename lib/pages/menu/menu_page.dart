@@ -38,8 +38,7 @@ class _MenuPageState extends NavigationBarPageWidgetState<MenuPage> {
   }
 
   Widget _buildListItem(String title, IconData iconData, VoidCallback action) {
-    final textStyle = new TextStyle(
-        color: Colors.black54, fontSize: 18.0, fontWeight: FontWeight.w600);
+    final textStyle = new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600);
 
     return new InkWell(
       onTap: action,

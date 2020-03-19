@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/provider/profile_change_notifier.dart';
+import 'package:flutter_app/provider/profile_provider.dart';
+import 'package:flutter_app/provider/theme_provider.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,11 @@ abstract class Funs {
     print("[$basePageWidget] - $object");
   }
 
-  ProfileChangeNotifier profileProvider({bool listen = true}) {
-    return Provider.of<ProfileChangeNotifier>(_context, listen: listen);
+  ProfileProvider profileProvider({bool listen = true}) {
+    return Provider.of<ProfileProvider>(_context, listen: listen);
+  }
+
+  ThemeProvider themeProvider({bool listen = true}) {
+    return Provider.of<ThemeProvider>(_context, listen: listen);
   }
 }

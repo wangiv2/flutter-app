@@ -30,7 +30,7 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
   String getTitle() => flutterI18nUtil.translate("menuPage.opportunity");
 
   @override
-  List<Widget> getAppBarActions() {
+  List<Widget> getAppBarActions(context) {
     return [
       IconButton(
         icon: Icon(Icons.search),

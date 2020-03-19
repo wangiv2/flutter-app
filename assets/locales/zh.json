@@ -50,12 +50,18 @@
     "contribution": "贡献"
   },
   "languageListPage": {
-    "title": "语言",
+    "title": "系统语言",
+    "zh": "中文简体",
+    "en": "English",
     "auto": "跟随系统",
     "changed": "语言切换成功"
   },
+  "darkModeSelectPage": {
+    "title": "夜间模式",
+    "enable": "开启",
+    "disable": "关闭"
+  },
   "mePage": {
-    "language": "语言",
     "logout": "登出"
   }
 }

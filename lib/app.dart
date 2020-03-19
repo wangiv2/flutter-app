@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/provider/profile_change_notifier.dart';
+import 'package:flutter_app/provider/profile_provider.dart';
+import 'package:flutter_app/provider/theme_provider.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/utils/flutterI18n/index.dart';
 import 'package:flutter_app/widgets/splash_page/splash_page.dart';
@@ -17,24 +18,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: <SingleChildWidget>[
-        ChangeNotifierProvider.value(value: ProfileChangeNotifier()),
+        ChangeNotifierProvider.value(value: ProfileProvider()),
+        ChangeNotifierProvider.value(value: ThemeProvider()),
       ],
       child: OKToast(
-          child: MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              primarySwatch: Colors.deepPurple,
-            ),
-            localizationsDelegates: [
-              FlutterI18nUtil.delegate('en'),
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
-            supportedLocales: [
-              Locale('en', 'US'), // 美国英语
-              Locale('zh', 'CN'), // 中文简体
-            ],
-            home: SplashPage(),
+          child: Consumer<ThemeProvider>(
+            builder: (_, provider, __) {
+              return MaterialApp(
+                title: 'Flutter Demo',
+                theme: provider.getTheme(),
+                darkTheme: provider.getTheme(isDarkMode: true),
+                themeMode: provider.getThemeMode(),
+                localizationsDelegates: [
+                  FlutterI18nUtil.delegate('en'),
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                ],
+                supportedLocales: [
+                  Locale('en', 'US'), // 美国英语
+                  Locale('zh', 'CN'), // 中文简体
+                ],
+                home: SplashPage(),
+              );
+            },
           ),
           // toast setting
           backgroundColor: Colors.black54,

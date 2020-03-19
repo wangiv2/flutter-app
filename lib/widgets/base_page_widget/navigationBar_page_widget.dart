@@ -9,6 +9,16 @@ abstract class NavigationBarPageWidget extends BasePageWidget{
 
 abstract class NavigationBarPageWidgetState<T extends NavigationBarPageWidget> extends BasePageWidgetState<T> {
 
+  // interfaces
+  Widget buildContentWidget(BuildContext context);
+  String getTitle();
+
+  // override event
+  List<Widget> getAppBarActions(BuildContext context) {
+    return [];
+  }
+
+  // Internal properties and methods
   bool _isShowLoading = false;
   bool _isShowNodata = false;
 
@@ -18,14 +28,14 @@ abstract class NavigationBarPageWidgetState<T extends NavigationBarPageWidget> e
       appBar: AppBar(
         title: new Text(getTitle()),
         centerTitle: true,
-        actions: getAppBarActions(),
+        actions: getAppBarActions(context),
       ),
       body: Flex(
         direction: Axis.vertical,
         children: <Widget>[
           Expanded(
             child: Container(
-//              color: Colors.white,
+//              color: Colors.blue,
               child: Stack(
                 children: <Widget>[
                   buildContentWidget(context),
@@ -66,11 +76,4 @@ abstract class NavigationBarPageWidgetState<T extends NavigationBarPageWidget> e
     _isShowNodata = false;
     setState(() {});
   }
-
-  List<Widget> getAppBarActions() {
-    return [];
-  }
-
-  Widget buildContentWidget(BuildContext context);
-  String getTitle();
 }

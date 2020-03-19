@@ -51,11 +51,17 @@
   },
   "languageListPage": {
     "title": "Language",
+    "zh": "中文简体",
+    "en": "English",
     "auto": "Auto",
     "changed": "Language change successfully"
   },
+  "darkModeSelectPage": {
+    "title": "Night mode",
+    "enable": "Enable",
+    "disable": "Disable"
+  },
   "mePage": {
-    "language": "Language",
     "logout": "Logout"
   }
 }

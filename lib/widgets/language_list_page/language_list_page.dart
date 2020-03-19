@@ -24,8 +24,8 @@ class _LanguageListPageState extends NavigationBarPageWidgetState<LanguageListPa
   Widget buildContentWidget(BuildContext context) {
     return ListView(
       children: <Widget>[
-        _buildLanguageItem("中文简体", "zh"),
-        _buildLanguageItem("English", "en"),
+        _buildLanguageItem(flutterI18nUtil.translate("languageListPage.zh"), "zh"),
+        _buildLanguageItem(flutterI18nUtil.translate("languageListPage.en"), "en"),
         _buildLanguageItem(flutterI18nUtil.translate("languageListPage.auto"), null),
       ],
     );
@@ -33,13 +33,13 @@ class _LanguageListPageState extends NavigationBarPageWidgetState<LanguageListPa
 
   Widget _buildLanguageItem(String lan, value) {
     Color color = Theme.of(context).primaryColor;
-    String currentLocale = flutterI18nUtil.currentLocale.languageCode;
+    bool isSelected = flutterI18nUtil.currentLocale.languageCode == value;
     return ListTile(
       title: Text(
         lan,
-        style: TextStyle(color: currentLocale == value ? color : null),
+        style: TextStyle(color: isSelected ? color : null),
       ),
-      trailing: currentLocale == value ? Icon(Icons.done, color: color) : null,
+      trailing: isSelected ? Icon(Icons.done, color: color) : null,
       onTap: () async {
         Locale locale;
         if (value != null) {
