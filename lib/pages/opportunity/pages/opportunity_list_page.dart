@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 import 'package:flutter_app/pages/opportunity/repository/opportunity_repo.dart';
+import 'package:flutter_app/pages/opportunity/res/constants.dart';
 import 'package:flutter_app/pages/opportunity/router.dart';
 import 'package:flutter_app/widgets/base_page_widget/list_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
@@ -69,7 +70,6 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
               title: Text(item.content),
               trailing: item.isApproved ? Icon(Icons.check_circle, color: Colors.green, size: 20.0,): Container(width: 0, height: 0,),
             ),
-
           ],
         ),
       ),
@@ -87,7 +87,7 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
     showSearchPage(
         context: context,
         delegate: CommonSearchDelegate(
-          suggestionItems: getHistoryItems(),
+          historySpKey: Constants.sp_key_opportunity_list,
           onSearch: (query) async {
             consoleLog('onSearch: $query');
             return OpportunityRepo.getList(0);
@@ -98,20 +98,5 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
           }
         )
     );
-  }
-
-  List<String> getHistoryItems() {
-    List<String> items = [
-      '面试',
-      'Studio3',
-      '动画dfsfds',
-      '自定义View',
-      '性能优化',
-      'gradle',
-      'Camera',
-      '代码混淆 安全',
-      '逆向加固'
-    ];
-    return items;
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/me/router.dart';
 import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';

@@ -201,6 +201,8 @@ abstract class SearchPageDelegate<T> {
 
   String getPlaceHolderText(BuildContext context);
 
+  void getHistoryFromSP();
+
   /// The current query string shown in the [AppBar].
   ///
   /// The user manipulates this string via the keyboard.
@@ -416,6 +418,7 @@ class _SearchPageState<T> extends State<_SearchPage<T>> {
     widget.delegate._currentBodyNotifier.addListener(_onSearchBodyChanged);
     focusNode.addListener(_onFocusChanged);
     widget.delegate._focusNode = focusNode;
+    widget.delegate.getHistoryFromSP();
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/flutterI18n/index.dart';
@@ -7,13 +8,15 @@ import 'package:flutter_app/widgets/ui_widgets/noData_widget.dart';
 
 class CommonSearchDelegate extends SearchPageDelegate<String>{
 
-  List<String> suggestionItems = [];
+  String historySpKey;
   Future Function(String query) onSearch;
-  Widget Function(BuildContext context, int index, Object item) buildResultItem;
+  Future Function(dynamic item) onTap;
+  Widget Function(BuildContext context, int index, dynamic item) buildResultItem;
 
-  List<Object> _resultItems = [];
+  List<String> _historyItems = [];
+  List<dynamic> _resultItems = [];
 
-  CommonSearchDelegate({this.suggestionItems, @required this.onSearch, @required this.buildResultItem}) : super();
+  CommonSearchDelegate({@required this.historySpKey, @required this.onSearch, @required this.buildResultItem}) : super();
 
   @override
   String getPlaceHolderText(BuildContext context) {
@@ -25,6 +28,13 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
     showLoading(context);
     _resultItems = await onSearch(query);
     showResults(context);
+    _addToHistoryItems(query);
+  }
+
+  @override
+  void getHistoryFromSP() {
+    _historyItems = SpUtil.getStringList(historySpKey, defValue: []);
+    print('getHistoryFromSP: $_historyItems');
   }
 
   @override
@@ -67,14 +77,13 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
   @override
   Widget buildSuggestions(BuildContext context) {
     Widget content = Container();
-    if (query.isEmpty) {
+    if (query.isEmpty && _historyItems.length > 0) {
       content = Container(
         padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 20),
               child: Text(
                 FlutterI18nUtil(context).translate('common.searchPage.history'),
                 style: TextStyle(fontSize: 16),
@@ -83,7 +92,7 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
             Container(
               child: Wrap(
                 spacing: 10,
-                children: suggestionItems.map((item) {
+                children: _historyItems.map((item) {
                   return buildSuggestItem(context, item);
                 }).toList(),
               ),
@@ -130,5 +139,21 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
             hintStyle: TextStyle(color: Colors.white30),
         )
     );
+  }
+
+  void _addToHistoryItems(String item) {
+    print('addToHistoryItems: $item');
+    int index = _historyItems.indexOf(item);
+    if (index >=0 ) {
+      _historyItems.removeAt(index);
+    }
+    if (_historyItems.length >= 10) {
+      _historyItems.removeLast();
+    }
+    _historyItems.insert(0, item);
+    print('_historyItems: $_historyItems');
+    SpUtil.putStringList(historySpKey, _historyItems).then((isOk){
+      print('putStringList isOk: $isOk');
+    });
   }
 }
