@@ -132,7 +132,7 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
     assert(theme != null);
     return theme.copyWith(
         primaryColorBrightness: Brightness.dark,
-        primaryColor: Colors.deepPurple,
+        primaryColor: theme.appBarTheme.color,
         primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.white),
         textTheme: theme.primaryTextTheme.copyWith(title: theme.primaryTextTheme.title.copyWith(color: Colors.white)),
         inputDecorationTheme: InputDecorationTheme(

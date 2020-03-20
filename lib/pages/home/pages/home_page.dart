@@ -17,7 +17,6 @@ class _HomePageState extends TabBarPageWidgetState<HomePage> {
   @override
   void onCreate() {
     super.onCreate();
-    fixedColor = Colors.deepPurple;
   }
 
   @override

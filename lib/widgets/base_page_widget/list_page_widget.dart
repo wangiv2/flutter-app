@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/funs.dart';
+import 'package:flutter_app/res/app_colors.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -61,7 +63,7 @@ abstract class BaseListPageWidgetState<T extends BaseListPageWidget> extends Nav
         enablePullDown: enableRefresh,
         enablePullUp: enableLoadMore && !_isNoData,
         header: WaterDropHeader(
-            waterDropColor: Colors.deepPurple,
+            waterDropColor: Funs.isDarkTheme() ? AppColors.dark_app_main : AppColors.app_main,
             complete: Text(flutterI18nUtil.translate("common.list.pullDownRefresh.complete")),
             failed: Text(flutterI18nUtil.translate("common.list.pullDownRefresh.failed")),
         ),

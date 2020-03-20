@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/funs.dart';
 import 'package:flutter_app/pages/opportunity/router.dart';
+import 'package:flutter_app/res/app_colors.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
@@ -38,7 +40,6 @@ class _MenuPageState extends NavigationBarPageWidgetState<MenuPage> {
   }
 
   Widget _buildListItem(String title, IconData iconData, VoidCallback action) {
-    final textStyle = new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600);
 
     return new InkWell(
       onTap: action,
@@ -53,16 +54,16 @@ class _MenuPageState extends NavigationBarPageWidgetState<MenuPage> {
               height: 45.0,
               margin: const EdgeInsets.only(right: 10.0),
               decoration: new BoxDecoration(
-                color: Colors.deepPurple,
+                color: Funs.isDarkTheme() ? AppColors.dark_app_main : AppColors.app_main,
                 borderRadius: new BorderRadius.circular(5.0),
               ),
               alignment: Alignment.center,
               child: new Icon(iconData, color: Colors.white, size: 24.0),
             ),
-            new Text(title, style: textStyle),
+            new Text(title),
             new Expanded(child: new Container()),
             new IconButton(
-                icon: new Icon(Icons.chevron_right, color: Colors.black26),
+                icon: new Icon(Icons.chevron_right),
                 onPressed: action)
           ],
         ),

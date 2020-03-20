@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/funs.dart';
+import 'package:flutter_app/res/app_colors.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingWidget extends StatelessWidget {
@@ -9,7 +11,7 @@ class LoadingWidget extends StatelessWidget {
       color: Colors.black12,
       child: Center(
         child:
-        new SpinKitFadingCircle(color: Colors.deepPurple),
+        new SpinKitFadingCircle(color: Funs.isDarkTheme() ? AppColors.dark_app_main : AppColors.app_main),
       ),
     );
   }

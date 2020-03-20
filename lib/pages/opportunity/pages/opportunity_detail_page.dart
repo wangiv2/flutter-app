@@ -57,8 +57,6 @@ class _OpportunityDetailPageState extends NavigationBarPageWidgetState<Opportuni
           child: Center(
             child: RaisedButton(
               child: Text('Approve'),
-              color: Colors.blue,
-              textColor: Colors.white,
               onPressed: () {
                 widget.opportunity.isApproved = true;
                 RouterNavigator.goBackWithParams(context, widget.opportunity);

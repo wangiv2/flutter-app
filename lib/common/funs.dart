@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/global.dart';
 import 'package:flutter_app/provider/profile_provider.dart';
 import 'package:flutter_app/provider/theme_provider.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
@@ -22,5 +23,9 @@ abstract class Funs {
 
   ThemeProvider themeProvider({bool listen = true}) {
     return Provider.of<ThemeProvider>(_context, listen: listen);
+  }
+
+  static bool isDarkTheme() {
+    return Global.profile.theme == ThemeProvider.themes[ThemeMode.dark];
   }
 }

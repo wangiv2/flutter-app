@@ -62,6 +62,8 @@
     "disable": "关闭"
   },
   "mePage": {
+    "aboutUs": "关于我们",
+    "version": "检查更新",
     "logout": "登出"
   }
 }

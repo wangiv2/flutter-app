@@ -62,6 +62,8 @@
     "disable": "Disable"
   },
   "mePage": {
+    "aboutUs": "About Us",
+    "version": "Version Upgrade",
     "logout": "Logout"
   }
 }
