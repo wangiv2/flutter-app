@@ -1,4 +1,5 @@
 import 'package:fluro/fluro.dart';
+import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/global.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
@@ -29,6 +30,8 @@ class _SplashPageState extends BasePageWidgetState<SplashPage> {
   ];
 
   Future _initFunction() async {
+    // 使用 ScreenUtil 需要设置设计稿的高宽,这里 750 * 1334 是 iphone6 的 size
+    setDesignWHD(750, 1334);
     // Get profile from SP
     await Global.getProfile();
 
