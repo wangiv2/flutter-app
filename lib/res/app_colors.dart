@@ -16,9 +16,6 @@ class AppColors {
   // 文本灰色
   static const Color text_gray = Color(0xFF999999);
   static const Color dark_text_gray = Color(0xFF666666);
-  // 文本不可用颜色
-  static const Color text_disabled = Color(0xFFD4E2FA);
-  static const Color dark_text_disabled = Color(0xFFCEDBF2);
   // 按钮颜色
   static const Color button_text = Color(0xfff1f1f1);
   static const Color dark_button_text = Color(0xfff1f1f1);

@@ -28,7 +28,6 @@ class ThemeProvider extends ChangeNotifier {
 
   getTheme({bool isDarkMode: false}) {
     return ThemeData(
-      errorColor: isDarkMode ? AppColors.dark_red : AppColors.red,
       // 深色还是浅色
       brightness: isDarkMode ? Brightness.dark : Brightness.light,
       // 主题主色，决定导航栏颜色
@@ -44,6 +43,7 @@ class ThemeProvider extends ChangeNotifier {
       // 文字选择色（输入框复制粘贴菜单）
       textSelectionColor: AppColors.app_main.withAlpha(70),
       textSelectionHandleColor: AppColors.app_main,
+      errorColor: isDarkMode ? AppColors.dark_red : AppColors.red,
       // 字体主题，包括标题、body等文字样式
       textTheme: TextTheme(
         // TextField输入文字颜色

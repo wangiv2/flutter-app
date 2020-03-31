@@ -84,6 +84,13 @@ class _MePageState extends NavigationBarPageWidgetState<MePage> {
                   transition: TransitionType.fadeIn);
             },
           ),
+        ),
+        Container(
+          margin: EdgeInsets.all(50.0),
+          child: RaisedButton(
+            child: Text('Disable Button'),
+            onPressed: null,
+          ),
         )
       ],
     );
