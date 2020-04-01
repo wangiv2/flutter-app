@@ -1,0 +1,69 @@
+{
+  "common": {
+    "searchPage": {
+      "placeHolder": "搜索",
+      "history": "历史记录"
+    },
+    "list": {
+      "pullDownRefresh": {
+        "complete": "刷新数据完毕",
+        "failed": "刷新数据失败"
+      },
+      "pullUpLoadMore": {
+        "idle": "上拉加载更多数据",
+        "releaseToLoad": "松开加载",
+        "loading": "正在加载...",
+        "failed": "加载数据失败",
+        "noData": "没有更多数据"
+      }
+    },
+    "error": {
+      "http500": {
+        "title": "500 错误",
+        "content": "内部服务器错误"
+      },
+      "http404": {
+        "title": "404 错误",
+        "content": "页面未找到"
+      },
+      "http401": {
+        "title": "401 错误",
+        "content": "未授权页面"
+      },
+      "noData": "暂无数据"
+    }
+  },
+  "splashPage": {
+    "loading": "正在初始化..."
+  },
+  "homePage": {
+    "title": "主页",
+    "tabTitles": {
+      "menu": "菜单",
+      "chat": "消息",
+      "me": "我的"
+    }
+  },
+  "menuPage": {
+    "opportunity": "机会",
+    "interaction": "交互",
+    "contribution": "贡献"
+  },
+  "languageListPage": {
+    "title": "系统语言",
+    "zh": "中文简体",
+    "en": "English",
+    "auto": "跟随系统",
+    "changed": "语言切换成功"
+  },
+  "darkModeSelectPage": {
+    "title": "深色模式",
+    "enable": "开启",
+    "disable": "关闭"
+  },
+  "mePage": {
+    "aboutUs": "关于我们",
+    "version": "检查更新",
+    "logout": "登出"
+  }
+}
