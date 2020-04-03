@@ -6,6 +6,7 @@ import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
 import 'package:flutter_app/config/app_config.dart';
+import 'package:flutter_app/samples/router.dart';
 
 class MenuPage extends NavigationBarPageWidget {
   @override
@@ -34,6 +35,12 @@ class _MenuPageState extends NavigationBarPageWidgetState<MenuPage> {
           }),
           _buildListItem(flutterI18nUtil.translate("menuPage.interaction"), Icons.chat, () {}),
           _buildListItem(flutterI18nUtil.translate("menuPage.contribution"), Icons.access_alarm, () {}),
+          _buildListItem(flutterI18nUtil.translate("menuPage.addToCalendar"), Icons.calendar_view_day, () {
+            RouterNavigator.push(context, SamplesRouter.addToCalendarPage);
+          }),
+          _buildListItem(flutterI18nUtil.translate("menuPage.imagePicker"), Icons.image, () {
+            RouterNavigator.push(context, SamplesRouter.multiImagePickerPage);
+          }),
         ],
       ),
     );

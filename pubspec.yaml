@@ -68,6 +68,12 @@ dependencies:
   jpush_flutter: 0.5.3
   # Event bus 通知库 https://github.com/marcojakob/dart-event-bus
   event_bus: ^1.1.1
+  # 添加日历事件插件 https://github.com/ja2375/add_2_calendar
+  add_2_calendar: ^1.4.0
+  # 图片选择器 https://github.com/Sh1d0w/multi_image_picker
+  multi_image_picker: ^4.6.3
+  # 动态申请权限 https://github.com/Baseflow/flutter-permission-handler
+  permission_handler: ^4.4.0
 
 dev_dependencies:
   flutter_test:
