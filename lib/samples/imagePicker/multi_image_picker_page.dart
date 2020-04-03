@@ -33,7 +33,6 @@ class _MultiImagePickerPageState extends NavigationBarPageWidgetState<MultiImage
     return Container(
       child: ImageWall(
           maxCount: 9,
-          reorderable: true,
           images: images,
           onChange: (images) {
             print(images);
