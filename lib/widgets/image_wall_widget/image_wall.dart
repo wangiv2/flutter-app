@@ -5,17 +5,13 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 
 typedef void ImagesChangeCallback(List<Asset> newImages);
 typedef Future<Asset> UploadImageCallback();
-
-/// 点击删除按钮时的回调
 typedef RemoveImageCallback(Asset removedUrl);
 
-//照片墙
 class ImageWall extends StatefulWidget {
   final Widget uploadBtn;
-  final int rowCount; //item per row
-  final int maxCount; //限制上传数量
-  final List<Asset> images; //initial images
-  final bool reorderable; //是否允许排序
+  final int rowCount;
+  final int maxCount;
+  final List<Asset> images;
   final ImagesChangeCallback onChange;
   final UploadImageCallback onUpload;
   final RemoveImageCallback onRemove;
@@ -28,7 +24,6 @@ class ImageWall extends StatefulWidget {
     @required this.onChange,
     @required this.onUpload,
     this.uploadBtn,
-    this.reorderable = true,
     this.onRemove,
   }) : super(key: key);
 
