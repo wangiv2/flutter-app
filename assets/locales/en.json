@@ -47,7 +47,9 @@
   "menuPage": {
     "opportunity": "Opportunity",
     "interaction": "Interaction",
-    "contribution": "Contribution"
+    "contribution": "Contribution",
+    "addToCalendar": "AddToCalendar",
+    "imagePicker": "ImagePicker"
   },
   "languageListPage": {
     "title": "Language",

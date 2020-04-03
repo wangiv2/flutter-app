@@ -47,7 +47,9 @@
   "menuPage": {
     "opportunity": "机会",
     "interaction": "交互",
-    "contribution": "贡献"
+    "contribution": "贡献",
+    "addToCalendar": "添加日历事件",
+    "imagePicker": "图片选择器"
   },
   "languageListPage": {
     "title": "系统语言",

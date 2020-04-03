@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/res/app_colors.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 
 typedef void ImagesChangeCallback(List<Asset> newImages);
@@ -150,11 +151,11 @@ class _ImageWallState extends State<ImageWall> {
         selectedAssets: [],
         cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
         materialOptions: MaterialOptions(
-          actionBarColor: "#abcdef",
+          actionBarColor: "#"+ AppColors.app_main.value.toRadixString(16),
           actionBarTitle: "Example App",
           allViewTitle: "All Photos",
           useDetailsView: false,
-          selectCircleStrokeColor: "#000000",
+          selectCircleStrokeColor: "#" + AppColors.app_main.value.toRadixString(16),
         ),
       );
     } on Exception catch (e) {
