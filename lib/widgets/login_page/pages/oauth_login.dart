@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/http/http_manager.dart';
-import 'package:flutter_app/utils/http/http_method.dart';
+import 'package:flutter_app/utils/http/impl/common/common_http.dart';
 import 'package:flutter_app/widgets/login_page/service/oauth_service.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
@@ -96,14 +97,23 @@ class _OAuthLoginPageState extends State<OAuthLoginPage> {
             Expanded(child: UnconstrainedBox(child: CircularProgressIndicator())),
             FlatButton(
               onPressed: () async {
-                try {
-                  var res = await httpManager.netFetch(Method.GET, "https://eapgateway.oocl.com/api/v1/user/getCurrentUser");
-                  var res2 = await httpManager.netFetch(Method.GET, "https://eapgateway.oocl.com/api/v1/user/getCurrentUser");
-                  print('res ==== ${res.data}');
-                  print('res2 ==== ${res2.data}');
-                } catch (e) {
-                  print('http error : $e');
-                }
+                new Timer(Duration.zero, () async {
+                  try {
+                    var res = await http.get("https://eapgateway.oocl.com/api/v1/user/getCurrentUser");
+                    print('res11111 ===== ${res.data}');
+                  } catch (e) {
+                    print('errrrr...........');
+                  }
+                });
+
+                new Timer(Duration.zero, () async {
+                  try {
+                    var res = await http.get("https://eapgateway.oocl.com/api/v1/user/getCurrentUser");
+                    print('res2222 ===== ${res.data}');
+                  } catch (e) {
+                    print('xxxxxx22222 ...... ');
+                  }
+                });
               },
               child: Text("Get User"),
             ),

@@ -1,10 +1,8 @@
 import 'dart:io';
-import 'package:flutter_app/utils/http/http_method.dart';
-
+import 'package:flutter_app/utils/http/impl/notification/notification_http.dart';
 import 'apns.dart';
 import 'jpush.dart';
 import 'package:device_info/device_info.dart';
-import 'package:flutter_app/utils/http/http_manager.dart';
 
 class NotificationManager {
 
@@ -69,9 +67,7 @@ class NotificationManager {
       "deviceModel": model
     };
 
-    var response = await httpManager.netFetch(
-        Method.GET, 'http://hkgcvdv80128.oocl.com:6003/nj_prs_notification/api/subscribe/apiAdvance',
-        data: params);
+    var response = await notificationHttp.get('http://hkgcvdv80128.oocl.com:6003/nj_prs_notification/api/subscribe/apiAdvance', queryParameters: params);
     if (response.data['success'] == true){
       if (successCallBack != null){
         successCallBack();
@@ -82,5 +78,4 @@ class NotificationManager {
       }
     }
   }
-
 }

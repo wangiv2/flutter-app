@@ -5,8 +5,6 @@ import 'package:flutter_app/common/global.dart';
 import 'package:flutter_app/entities/user_entity.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/routers/routers.dart';
-import 'package:flutter_app/utils/http/http_manager.dart';
-import 'package:flutter_app/utils/http/http_method.dart';
 
 class CommonLoginPage extends StatelessWidget {
   @override

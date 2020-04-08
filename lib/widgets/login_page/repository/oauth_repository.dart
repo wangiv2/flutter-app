@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter_app/entities/oauth_entity.dart';
-import 'package:flutter_app/utils/http/http_manager.dart';
-import 'package:flutter_app/utils/http/http_method.dart';
+import 'package:flutter_app/utils/http/impl/oauth/oauth_http.dart';
 
 abstract class IOauthRepository {
   Future<OAuthEntity> getToken(String code);
@@ -23,10 +22,7 @@ class OauthRepository implements IOauthRepository {
       "code": code
     };
 
-    var res = await httpManager.netFetch(
-        Method.POST, 'https://oauth.oocl.com/oauthserver/oauth/token',
-        data: params,
-        option: Options(contentType: Headers.formUrlEncodedContentType));
+    var res = await oauthHttp.post('https://oauth.oocl.com/oauthserver/oauth/token', data: params, options: Options(contentType: Headers.formUrlEncodedContentType));
     OAuthEntity oauthResponse = OAuthEntity().fromJson(res.data);
     return oauthResponse;
   }
@@ -43,10 +39,7 @@ class OauthRepository implements IOauthRepository {
       "refresh_token": refreshToken
     };
 
-    var res = await httpManager.netFetch(
-        Method.POST, 'https://oauth.oocl.com/oauthserver/oauth/token',
-        data: params,
-        option: Options(contentType: Headers.formUrlEncodedContentType));
+    var res = await oauthHttp.post('https://oauth.oocl.com/oauthserver/oauth/token', data: params, options: Options(contentType: Headers.formUrlEncodedContentType));
     OAuthEntity oauthResponse = OAuthEntity().fromJson(res.data);
 
     return oauthResponse;
@@ -62,10 +55,7 @@ class OauthRepository implements IOauthRepository {
       "access_token": accessToken,
     };
 
-    var res = await httpManager.netFetch(
-        Method.POST, 'https://oauth.oocl.com/oauthserver/oauth/token/revoke',
-        data: params,
-        option: Options(contentType: Headers.formUrlEncodedContentType));
+    var res = await oauthHttp.post('https://oauth.oocl.com/oauthserver/oauth/token/revoke', data: params, options: Options(contentType: Headers.formUrlEncodedContentType));
 
     bool result = res.data.toLowerCase() == 'true';
     print('result ==== $result');

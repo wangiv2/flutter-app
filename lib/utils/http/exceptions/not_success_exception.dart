@@ -2,8 +2,8 @@
 class NotSuccessException implements Exception {
   String message;
 
-  NotSuccessException(String _message) {
-    message = _message;
+  NotSuccessException(String msg) {
+    message = msg;
   }
 
   @override

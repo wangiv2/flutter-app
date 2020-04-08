@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 
-class TokenInterceptors extends InterceptorsWrapper {
-
+class TokenInterceptor extends InterceptorsWrapper {
   @override
   onRequest(RequestOptions options) async {
     var _token = SpUtil.getString("access_token") ?? "";
