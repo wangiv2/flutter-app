@@ -9,6 +9,7 @@ import 'package:flutter_app/widgets/error_page_widget/401.dart';
 import 'package:flutter_app/widgets/error_page_widget/404.dart';
 import 'package:flutter_app/widgets/error_page_widget/500.dart';
 import 'package:flutter_app/widgets/login_page/router.dart';
+import 'package:flutter_app/samples/router.dart';
 
 class Routes {
 
@@ -43,6 +44,7 @@ class Routes {
     _listRouter.add(LoginRouter());
     _listRouter.add(MeRouter());
     _listRouter.add(OpportunityRouter());
+    _listRouter.add(SamplesRouter());
 
     /// 初始化路由
     _listRouter.forEach((routerProvider) {
