@@ -37,13 +37,12 @@ class _ImageWallState extends State<ImageWall> {
   @override
   void initState() {
     super.initState();
-//    images = widget.images ?? new List<Asset>();
   }
 
   @override
   Widget build(BuildContext context) {
     images = widget.images ?? new List<Asset>();
-    final double space = 16.0;
+    final double space = 4.0;
     return InkWell(
       child: GridView.count(
         padding: EdgeInsets.all(space),
@@ -74,48 +73,50 @@ class _ImageWallState extends State<ImageWall> {
     return Stack(
       overflow: Overflow.visible,
       children: <Widget>[
-        AssetThumb(
-          asset: images[index],
-          width: 250,
-          height: 250,
-        ),
-//        Image.network(
-//          images[index],
-//          fit: BoxFit.cover,
-//        ),
-        Positioned(
-          right: -10.0,
-          top: -10.0,
-          child: InkWell(
-            child: Icon(Icons.cancel, color: Theme.of(context).disabledColor),
-            onTap: () {
-              Asset removedUrl;
-              setState(() {
-                removedUrl = images.removeAt(index);
-              });
-              widget.onChange(images);
-              if (widget.onRemove != null) {
-                widget.onRemove(removedUrl);
-              }
-            },
+        Padding(
+          padding: EdgeInsets.all(10.0),
+          child: AssetThumb(
+            asset: images[index],
+            width: 300,
+            height: 300,
           ),
-        )
+        ),
+        Container(
+            margin: EdgeInsets.only(bottom: 20.0, left: 110),
+            decoration:
+                BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+            child: GestureDetector(
+              child: Icon(Icons.cancel, color: Theme.of(context).disabledColor,size: 20,),
+              onTap: () {
+                Asset removedUrl;
+                setState(() {
+                  removedUrl = images.removeAt(index);
+                });
+                widget.onChange(images);
+                if (widget.onRemove != null) {
+                  widget.onRemove(removedUrl);
+                }
+              },
+            )),
       ],
     );
   }
 
   Widget _buildAddImageButton() {
-    Widget btn = Container(
-      decoration: BoxDecoration(
-          border: Border.all(
-            style: BorderStyle.none,
-            color: Theme.of(context).disabledColor,
-          ),
-          color: Colors.black12),
-      child: Icon(
-        Icons.add,
-        color: Theme.of(context).disabledColor,
-        size: 50,
+    Widget btn = Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(
+              style: BorderStyle.none,
+              color: Theme.of(context).disabledColor,
+            ),
+            color: Colors.black12),
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).disabledColor,
+          size: 50,
+        ),
       ),
     );
 
@@ -123,14 +124,6 @@ class _ImageWallState extends State<ImageWall> {
       child: widget.uploadBtn ?? btn,
       onTap: () async {
         loadAssets();
-//        Asset url = await widget.onUpload();
-//        if (url == null) {
-//          return;
-//        }
-//        setState(() {
-//          images.add(url);
-//        });
-//        widget.onChange(images);
       },
     );
   }
@@ -138,7 +131,6 @@ class _ImageWallState extends State<ImageWall> {
   Future<void> loadAssets() async {
     List<Asset> resultList = List<Asset>();
     String error = 'No Error Dectected';
-
     try {
       resultList = await MultiImagePicker.pickImages(
         maxImages: widget.maxCount - images.length,
@@ -146,11 +138,12 @@ class _ImageWallState extends State<ImageWall> {
         selectedAssets: [],
         cupertinoOptions: CupertinoOptions(takePhotoIcon: "chat"),
         materialOptions: MaterialOptions(
-          actionBarColor: "#"+ AppColors.app_main.value.toRadixString(16),
+          actionBarColor: "#" + AppColors.app_main.value.toRadixString(16),
           actionBarTitle: "Example App",
           allViewTitle: "All Photos",
           useDetailsView: false,
-          selectCircleStrokeColor: "#" + AppColors.app_main.value.toRadixString(16),
+          selectCircleStrokeColor:
+              "#" + AppColors.app_main.value.toRadixString(16),
         ),
       );
     } on Exception catch (e) {
@@ -164,8 +157,6 @@ class _ImageWallState extends State<ImageWall> {
 
     setState(() {
       images.addAll(resultList);
-//      images = resultList;
-//      _error = error;
     });
   }
 }
