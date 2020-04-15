@@ -1,6 +1,7 @@
 import 'package:flutter_app/entities/config_entity.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert' as convert;
+import 'config_json.dart';
 
 class AppConfig  {
   static AppConfig _instance;
@@ -9,6 +10,7 @@ class AppConfig  {
 
   AppConfig._internal();
 
+  /// app single instance
   static AppConfig getInstance() {
     if (_instance == null) {
       _instance = new AppConfig._internal();
@@ -16,11 +18,16 @@ class AppConfig  {
     return _instance;
   }
 
+  /// load config function
   Future<ConfigEntity> loadConfigJson(env) async {
-    var configJsonStr = await rootBundle.loadString('lib/config/config.json');
-    var configJson = convert.jsonDecode(configJsonStr)[env];
-    configEntity = ConfigEntity().fromJson(configJson);
-    return configEntity;
+    try {
+      var configMap = getConfigJson();
+      var envItem = configMap[env];
+      configEntity = ConfigEntity().fromJson(envItem);
+      return configEntity;
+    }catch(e){
+      //will handle later
+    }
   }
 
 }
