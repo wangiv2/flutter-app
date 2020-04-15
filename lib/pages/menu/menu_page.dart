@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/funs.dart';
 import 'package:flutter_app/pages/opportunity/router.dart';
 import 'package:flutter_app/res/app_colors.dart';
+import 'package:flutter_app/res/styles.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/navigationBar_page_widget.dart';
@@ -61,13 +62,13 @@ class _MenuPageState extends NavigationBarPageWidgetState<MenuPage> {
               height: 45.0,
               margin: const EdgeInsets.only(right: 10.0),
               decoration: new BoxDecoration(
-                color: Funs.isDarkTheme() ? AppColors.dark_app_main : AppColors.app_main,
+                color: Funs.isDarkTheme() ? AppColors.dark_icon_bg : AppColors.icon_bg,
                 borderRadius: new BorderRadius.circular(5.0),
               ),
               alignment: Alignment.center,
-              child: new Icon(iconData, color: Colors.white, size: 24.0),
+              child: new Icon(iconData),
             ),
-            new Text(title),
+            new Text(title, style: Theme.of(context).textTheme.title,),
             new Expanded(child: new Container()),
             new IconButton(
                 icon: new Icon(Icons.chevron_right),

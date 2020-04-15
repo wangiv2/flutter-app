@@ -5,7 +5,62 @@ import 'package:flutter_app/res/app_colors.dart';
 import 'dimens.dart';
 
 class TextStyles {
+  static TextStyle navTitleText = TextStyle(
+      fontSize: 20,
+      color: AppColors.nav_text,
+      fontWeight: FontWeight.w500
+  );
+  static TextStyle darkNavTitleText = navTitleText.copyWith(
+      color: AppColors.dark_nav_text
+  );
 
+  static TextStyle titleText = TextStyle(
+      fontSize: 18,
+      color: AppColors.text,
+      fontWeight: FontWeight.w500
+  );
+  static TextStyle darkTitleText = titleText.copyWith(
+      color: AppColors.dark_text
+  );
+
+  static TextStyle bodyText = TextStyle(
+      fontSize: 14,
+      color: AppColors.text,
+      textBaseline: TextBaseline.alphabetic
+  );
+  static TextStyle darkBodyText = bodyText.copyWith(
+      color: AppColors.dark_text
+  );
+
+  static TextStyle listTitleText = TextStyle(
+      fontSize: 16,
+      color: AppColors.text,
+      textBaseline: TextBaseline.alphabetic
+  );
+  static TextStyle darkListTitleText = listTitleText.copyWith(
+      color: AppColors.dark_text
+  );
+
+  static TextStyle listSubTitleText = TextStyle(
+      fontSize: 12,
+      color: AppColors.text_gray,
+      textBaseline: TextBaseline.alphabetic
+  );
+  static TextStyle darkListSubTitleText = listSubTitleText.copyWith(
+      color: AppColors.dark_text_gray
+  );
+
+  static TextStyle listBodyText = TextStyle(
+      fontSize: 12,
+      color: AppColors.text,
+      textBaseline: TextBaseline.alphabetic
+  );
+  static TextStyle darkListBodyText = listTitleText.copyWith(
+      color: AppColors.dark_text
+  );
+
+
+  // un used
   static const TextStyle textSize12 = const TextStyle(
     fontSize: Dimens.font_sp12,
   );

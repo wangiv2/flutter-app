@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/global.dart';
 import 'package:flutter_app/routers/router_navigator.dart';
 import 'package:flutter_app/routers/routers.dart';
+import 'package:flutter_app/utils/flutterI18n/index.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/login_page/router.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -34,7 +35,7 @@ class _SplashPageState extends BasePageWidgetState<SplashPage> {
 
     _isFirstLaunch = Global.profile.isFirstLaunch;
     _isLogin = Global.profile.user != null;
-    flutterI18nUtil.refresh(lang: Global.profile.locale);
+    flutterI18nUtil.refresh(lang: Global.profile.locale ?? FlutterI18nUtil.defaultLang);
 
     // update loading text
     await Future.delayed(Duration(milliseconds: 100));

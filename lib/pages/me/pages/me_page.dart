@@ -46,8 +46,8 @@ class _MePageState extends NavigationBarPageWidgetState<MePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(Global.profile.user.englishName, style: TextStyle(fontSize: 17.0),),
-                      Text(Global.profile.user.email, style: TextStyle(color: Funs.isDarkTheme() ? AppColors.dark_text_gray : AppColors.text_gray),),
+                      Text(Global.profile.user?.englishName ?? '', style: TextStyle(fontSize: 17.0)),
+                      Text(Global.profile.user?.email ?? '', style: TextStyle(color: Funs.isDarkTheme() ? AppColors.dark_text_gray : AppColors.text_gray)),
                     ],
                   ),
                 ),
@@ -91,7 +91,55 @@ class _MePageState extends NavigationBarPageWidgetState<MePage> {
             child: Text('Disable Button'),
             onPressed: null,
           ),
-        )
+        ),
+        Container(
+          margin: EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              Checkbox(
+                value: true,
+                onChanged: (v){},
+              ),
+              Checkbox(
+                value: false,
+                onChanged: (v){},
+              ),
+              Checkbox(
+                value: true,
+                onChanged: null,
+              ),
+              Switch(
+                value: true,
+                onChanged: (v){},
+              ),
+              Switch(
+                value: false,
+                onChanged: (v){},
+              ),
+              Switch(
+                value: true,
+                onChanged: null,
+              ),
+            ],
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                //限制进度条的高度
+                height: 6.0,
+                //限制进度条的宽度
+                width: 200,
+                child: new LinearProgressIndicator(
+                  //0~1的浮点数，用来表示进度多少;如果 value 为 null 或空，则显示一个动画，否则显示一个定值
+                    value: 0.3
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
