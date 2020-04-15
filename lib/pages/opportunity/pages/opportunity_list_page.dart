@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/funs.dart';
 import 'package:flutter_app/pages/opportunity/entities/opportunity_entity.dart';
 import 'package:flutter_app/pages/opportunity/repository/opportunity_repo.dart';
 import 'package:flutter_app/pages/opportunity/res/constants.dart';
 import 'package:flutter_app/pages/opportunity/router.dart';
+import 'package:flutter_app/res/app_colors.dart';
 import 'package:flutter_app/widgets/base_page_widget/list_page_widget.dart';
 import 'package:flutter_app/widgets/base_page_widget/base_page_widget.dart';
 import 'package:flutter_app/widgets/search_page_widget/common_search_delegate.dart';
@@ -56,7 +58,6 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
             ListTile(
               title: Text(
                   item.title,
-                  style: TextStyle(fontWeight: FontWeight.w500)
               ),
               subtitle: Text(item.subTitle),
               leading: new Icon(
@@ -68,7 +69,7 @@ class _OpportunityListPageState extends BaseListPageWidgetState<OpportunityListP
             ),
             ListTile(
               title: Text(item.content),
-              trailing: item.isApproved ? Icon(Icons.check_circle, color: Colors.green, size: 20.0,): Container(width: 0, height: 0,),
+              trailing: item.isApproved ? Icon(Icons.check_circle, color: Funs.isDarkTheme() ? AppColors.dark_app_main : AppColors.app_main, size: 20.0,): Container(width: 0, height: 0,),
             ),
           ],
         ),

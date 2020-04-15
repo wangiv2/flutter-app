@@ -7,6 +7,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app/common/funs.dart';
+import 'package:flutter_app/res/app_colors.dart';
 
 /// Shows a full screen search page and returns the search result selected by
 /// the user when the page is closed.
@@ -187,12 +189,11 @@ abstract class SearchPageDelegate<T> {
     final ThemeData theme = Theme.of(context);
     assert(theme != null);
     return theme.copyWith(
-      primaryColorBrightness: Brightness.light,
-      primaryColor: Colors.white,
-      primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.grey),
+      primaryColor: theme.appBarTheme.color,
+      primaryIconTheme: theme.appBarTheme.iconTheme,
       inputDecorationTheme: InputDecorationTheme(
         border: InputBorder.none,
-        hintStyle: TextStyle(color: Colors.grey)
+        hintStyle: TextStyle(color: Funs.isDarkTheme() ? AppColors.dark_text_gray : AppColors.text_gray)
       )
     );
   }

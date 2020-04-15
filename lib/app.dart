@@ -34,10 +34,7 @@ class MyApp extends StatelessWidget {
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
                 ],
-                supportedLocales: [
-                  Locale('en', 'US'), // 美国英语
-                  Locale('zh', 'CN'), // 中文简体
-                ],
+                supportedLocales: FlutterI18nUtil.supportedLocales,
                 home: SplashPage(),
               );
             },

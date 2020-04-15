@@ -126,20 +126,19 @@ class CommonSearchDelegate extends SearchPageDelegate<String>{
     );
   }
 
-  @override
-  ThemeData appBarTheme(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    assert(theme != null);
-    return theme.copyWith(
-        primaryColorBrightness: Brightness.dark,
-        primaryColor: theme.appBarTheme.color,
-        primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.white),
-        textTheme: theme.primaryTextTheme.copyWith(title: theme.primaryTextTheme.title.copyWith(color: Colors.white)),
-        inputDecorationTheme: InputDecorationTheme(
-            hintStyle: TextStyle(color: Colors.white30),
-        )
-    );
-  }
+//  @override
+//  ThemeData appBarTheme(BuildContext context) {
+//    final ThemeData theme = Theme.of(context);
+//    assert(theme != null);
+//    return theme.copyWith(
+//        primaryColor: theme.appBarTheme.color,
+//        primaryIconTheme: theme.primaryIconTheme.copyWith(color: Colors.white),
+//        textTheme: theme.primaryTextTheme.copyWith(title: theme.primaryTextTheme.title.copyWith(color: Colors.white)),
+//        inputDecorationTheme: InputDecorationTheme(
+//            hintStyle: TextStyle(color: Colors.white30),
+//        )
+//    );
+//  }
 
   void _addToHistoryItems(String item) {
     print('addToHistoryItems: $item');

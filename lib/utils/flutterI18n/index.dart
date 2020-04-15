@@ -4,20 +4,23 @@ import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 
 class FlutterI18nUtil {
   BuildContext _context;
-  static String _defaultLang = 'en';
+  static String defaultLang = 'en';
   static String _localesPath = 'assets/locales';
+  static List<Locale> supportedLocales = [
+    Locale('en', 'US'), // 美国英语
+    Locale('zh', 'CN'), // 中文简体
+  ];
 
   FlutterI18nUtil(BuildContext context) {
     _context = context;
   }
 
-  static FlutterI18nDelegate delegate (String lang) {
+  static FlutterI18nDelegate delegate(String lang) {
     return FlutterI18nDelegate(
         useCountryCode: false,
-        fallbackFile: _defaultLang,
+        fallbackFile: defaultLang,
         path: _localesPath,
-        forcedLocale: new Locale(lang == null ? _defaultLang : lang)
-    );
+        forcedLocale: new Locale(lang ?? defaultLang));
   }
 
   Locale get currentLocale {
