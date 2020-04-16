@@ -4,8 +4,6 @@ import 'package:flutter_app/widgets/image_wall_widget/image_wall.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class MultiImagePickerPage extends NavigationBarPageWidget {
   @override
@@ -45,7 +43,6 @@ class _MultiImagePickerPageState extends NavigationBarPageWidgetState<MultiImage
   }
 
   Future<void> loadAssets() async {
-//    await requestPermission();
     setState(() {
       images = List<Asset>();
     });
