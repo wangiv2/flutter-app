@@ -1,12 +1,10 @@
 /*
  * Copyright(c) 2020,  MBC Team
  * 项目名称:flutter-framework
- * 文件名称:test_class.dart
+ * 文件名称:test_class1.dart
  * Date:4/14/20, 11:36 AM
  * Author: Denny Zhang
  */
-
-import 'test_factory.dart';
 
 class Person {
   String firstName;
@@ -27,6 +25,7 @@ class Employee extends Person {
 
 
 main() {
+  //  --------------------------------------
   var emp = new Employee.fromJson({});
 
   // Prints:
@@ -36,10 +35,6 @@ main() {
     // Type check
     emp.firstName = 'Bob';
   }
-  assert(emp is Logger);
-  (emp as Person).firstName = 'Bob';
-
-  var logger = Logger('UI');
-  logger.log('Button clicked');
+  emp.firstName = 'Bob';
 
 }

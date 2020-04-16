@@ -1,7 +1,7 @@
 /*
  * Copyright(c) 2020,  MBC Team
  * 项目名称:flutter-framework
- * 文件名称:test_factory.dart
+ * 文件名称:test_factory1.dart
  * Date:4/14/20, 11:32 AM
  * Author: Denny Zhang
  */
@@ -29,4 +29,10 @@ class Logger {
   void log(String msg) {
     if (!mute) print(msg);
   }
+}
+
+main() {
+  var logger = Logger('UI');
+  logger.log('Button clicked');
+  //  --------------------------------------
 }
