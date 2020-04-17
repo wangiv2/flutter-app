@@ -34,7 +34,7 @@ dependencies:
   dio: ^3.0.8
   dio_cookie_manager: ^1.0.0
   # Device relate
-  shared_preferences: ^0.5.6+1
+  shared_preferences: ^0.5.6+3
   device_info: ^0.4.1+4
   battery: ^0.3.1+7
   path_provider: ^1.6.0  # A Flutter plugin for finding commonly used locations on the filesystem.
